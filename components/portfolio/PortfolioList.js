@@ -5,8 +5,11 @@ import {
   Text,
   View,
   TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components/native';
+
+import AddButtonSource from './../../assets/add-button.png';
 
 const BookCover = styled.View`
   ${/* border: palevioletred 1px solid; */ ''}
@@ -34,18 +37,30 @@ width: 30%;
 height: 30%;
 `;
 
+const AddBookIcon = styled.Image`
+width: 50%;
+height: 50%;
+`;
+
+const AddBookTouchable = styled.TouchableOpacity`
+width: 30%;
+height: 30%;
+${/* background-color: #F44243; */ ''}
+background-color: #38384E;
+`;
+
 class Portfolio extends Component {
   state = {
     photos: [],
     books: [
-      { title: 'Outdoors', id: 24758 },
-      { title: 'Windsor', id: 31708 },
-      { title: 'Burberry', id: 94478 },
-      { title: 'Editorial', id: 13456 },
-      { title: 'Outdoors', id: 34758 },
-      { title: 'Windsor', id: 34708 },
-      { title: 'Burberry', id: 34478 },
-      { title: 'Editorial', id: 23456 },
+      // { title: 'Outdoors', id: 24758 },
+      // { title: 'Windsor', id: 31708 },
+      // { title: 'Burberry', id: 94478 },
+      // { title: 'Editorial', id: 13456 },
+      // { title: 'Outdoors', id: 34758 },
+      // { title: 'Windsor', id: 34708 },
+      // { title: 'Burberry', id: 34478 },
+      // { title: 'Editorial', id: 23456 },
     ],
   };
 
@@ -64,6 +79,9 @@ class Portfolio extends Component {
     return (
       <PortfolioList>
         {renderBooks}
+        <AddBookTouchable>
+          <AddBookIcon source={AddButtonSource} />
+        </AddBookTouchable>
       </PortfolioList>
     );
   }
