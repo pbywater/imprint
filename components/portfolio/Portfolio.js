@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import styled from 'styled-components/native';
 
-const Book = styled.View`
+const BookCover = styled.View`
   ${/* border: palevioletred 1px solid; */ ''}
   width: 100%;
   height: 100%;
@@ -55,9 +55,9 @@ class Portfolio extends Component {
 
     const renderBooks = books.map(book => (
       <BookTouchable key={book.id} onPress={() => navigate('Appointments')}>
-        <Book>
+        <BookCover>
           <Text>{book.title}</Text>
-        </Book>
+        </BookCover>
       </BookTouchable>
     ));
 

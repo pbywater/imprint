@@ -8,25 +8,26 @@ import {
   Dimensions,
 } from 'react-native';
 import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
 const BookContainer = styled.ScrollView`
-  display: flex;
   flex: 1;
-  flex-direction: row;
-  border: solid 1px blue;
-  flex-wrap: wrap;
 `;
 
 const Photo = styled.Image`
-  border: solid 1px red;
-  flex: 1;
-  ${/* width: ${width / 3};
-  height: ${height / 2}; */ ''}
   width: 200;
   height: 200;
 `;
+
+const styles = StyleSheet.create({
+  center: {
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+});
 
 class Book extends Component {
   state = {
@@ -47,11 +48,16 @@ class Book extends Component {
     const { photos } = this.state;
     console.log(photos);
     const renderPhotos = photos.map(photo => {
-      return <Photo source={{ uri: photo.node.image.uri }} />;
+      return (
+        <Photo
+          key={photo.node.image.uri}
+          source={{ uri: photo.node.image.uri }}
+        />
+      );
     });
 
     return (
-      <BookContainer>
+      <BookContainer contentContainerStyle={styles.center}>
         {renderPhotos}
       </BookContainer>
     );
