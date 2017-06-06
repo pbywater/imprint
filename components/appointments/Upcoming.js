@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Picker } from "react-native";
 import styled from "styled-components/native";
+import { GeneralButton, Title, SelectOption } from "../styles/BaseStyles.js";
 
 const UpcomingContainer = styled.View`
 width: 90%;
@@ -22,28 +23,12 @@ height: 100%;
 padding: 5%;
 `;
 
-const AppointmentTitle = styled.Text`
-font-family: Helvetica;
-font-style: italic;
-font-weight: 700;
-font-size: 20;
-color: white;
-padding: 2%;
-`;
-
-const Subheading = styled.Text`
-font-family: Helvetica;
+const Subheading = styled(Title)`
 font-size: 15;
-font-weight: 700;
-color: white;
-padding: 2%;
 `;
 
-const BodyText = styled.Text`
-font-family: Helvetica;
+const BodyText = styled(Title)`
 font-size: 12;
-color: white;
-padding: 2%;
 `;
 
 function Upcoming(props) {
@@ -51,7 +36,7 @@ function Upcoming(props) {
     <UpcomingContainer>
       <UpcomingBox>
         <ThirdOfBox>
-          <AppointmentTitle>{props.name}</AppointmentTitle>
+          <Title>{props.name}</Title>
           <Subheading>{props.time}</Subheading>
           <BodyText>{props.address}</BodyText>
         </ThirdOfBox>
@@ -61,6 +46,14 @@ function Upcoming(props) {
         </ThirdOfBox>
         <ThirdOfBox>
           <Subheading>Portfolio</Subheading>
+          <SelectOption>
+            <BodyText>{props.portfolio}</BodyText>
+          </SelectOption>
+          <GeneralButton>
+            <Title>
+              Launch
+            </Title>
+          </GeneralButton>
         </ThirdOfBox>
       </UpcomingBox>
     </UpcomingContainer>
