@@ -9,7 +9,6 @@ const App = TabNavigator(
   {
     Appointments: { screen: Appointments },
     Portfolio: { screen: Portfolio },
-    // Book: { screen: Book },
     Stats: { screen: Stats },
   },
   {

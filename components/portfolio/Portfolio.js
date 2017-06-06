@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import PortfolioList from './PortfolioList';
 import Book from './Book';
 
-const Portfolio = TabNavigator(
-  {
-    Portfolio: { screen: PortfolioList },
-    Book: { screen: Book },
-  },
-  {
-    tabBarPosition: 'bottom',
-  }
-);
+const Portfolio = StackNavigator({
+  Portfolio: { screen: PortfolioList },
+  Book: { screen: Book },
+});
 
 export default Portfolio;
