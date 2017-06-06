@@ -1,23 +1,18 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { TabNavigator } from 'react-navigation';
+import Appointments from './components/Appointments';
+import Portfolio from './components/Portfolio';
+import Stats from './components/Stats';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>HI AKIN</Text>
-        <Text>HI LUCY</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+const App = TabNavigator(
+  {
+    Appointments: { screen: Appointments },
+    Portfolio: { screen: Portfolio },
+    Stats: { screen: Stats },
   },
-});
+  {
+    tabBarPosition: 'top',
+  }
+);
+
+export default App;
