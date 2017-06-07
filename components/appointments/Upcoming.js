@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
-import { Text, View, Picker, TouchableOpacity, TextInput } from 'react-native';
-import styled from 'styled-components/native';
+import React, { Component } from "react";
+import { Text, View, Picker, TouchableOpacity, TextInput } from "react-native";
+import styled, { css } from "styled-components/native";
 import {
   GeneralButton,
   Title,
   SelectOption,
-  titleStyle,
-} from '../styles/BaseStyles.js';
+  titleStyle
+} from "../styles/BaseStyles.js";
+
+const textColor = css`
+color: ${props => (props.isEdit ? "#38384E" : "white")};
+`;
 
 const UpcomingContainer = styled.View`
   width: 90%;
@@ -17,8 +21,9 @@ const UpcomingContainer = styled.View`
 const UpcomingBox = styled.View`
   width: 90%;
   height: 100%;
-  ${/* background-color: #38384E; */ ''}
-  background-color: ${props => (props.isEdit ? 'blue' : '#38384E')};
+  ${/* background-color: #38384E; */ ""}
+  background-color: ${props => (props.isEdit ? "white" : "#38384E")};
+  border: ${props => (props.isEdit ? "5px solid #38384E" : "white")};
   display: flex;
   flex-direction: row;
 `;
@@ -31,6 +36,7 @@ const ThirdOfBox = styled.View`
 
 const Subheading = styled(Title)`
   font-size: 15;
+  ${textColor};
 `;
 
 const BodyText = styled(Title)`
@@ -39,14 +45,15 @@ const BodyText = styled(Title)`
 
 const TouchInput = styled.TextInput`
 height: 40;
-border: 1px solid white;
 ${titleStyle};
-color: white;
+${textColor};
+border: ${props => (props.isEdit ? "1px solid #38384E" : "1px solid white")};
 `;
 
 const BodyTouchInput = styled(TouchInput)`
   font-size: 12;
   font-style: normal;
+  ${textColor};
 `;
 
 const SubheadingTouchInput = styled(BodyTouchInput)`
@@ -56,35 +63,35 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: '',
+    text: ""
   };
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit,
+      edit: !this.state.edit
     });
   };
   render() {
-    const { name, portfolio, notes, address, time } = this.props;
+    const { name, portfolio, notes, address, time, isEdit } = this.props;
     return (
       <UpcomingContainer>
-        <UpcomingBox>
+        <UpcomingBox isEdit={isEdit}>
           <ThirdOfBox>
-            <TouchInput />
-            <Subheading>{time}</Subheading>
-            <BodyTouchInput />
+            <TouchInput isEdit={isEdit} />
+            <SubheadingTouchInput isEdit={isEdit} />
+            <BodyTouchInput isEdit={isEdit} />
           </ThirdOfBox>
           <ThirdOfBox>
-            <Subheading>Notes</Subheading>
-            <TouchInput />
+            <Subheading isEdit={isEdit}>Notes</Subheading>
+            <TouchInput isEdit={isEdit} />
           </ThirdOfBox>
           <ThirdOfBox>
-            <Subheading>Portfolio</Subheading>
+            <Subheading isEdit={isEdit}>Portfolio</Subheading>
             <SelectOption>
-              <BodyText>{portfolio}</BodyText>
+              <BodyText isEdit={isEdit}>{portfolio}</BodyText>
             </SelectOption>
             <GeneralButton>
-              <Title>
+              <Title isEdit={isEdit}>
                 Launch
               </Title>
             </GeneralButton>
