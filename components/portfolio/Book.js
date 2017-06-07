@@ -7,12 +7,12 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  ImagePickerIOS
 } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
-import {AddBookIcon, AddBookTouchable} from '../styles/BaseStyles.js';
+import { AddBookIcon, AddBookTouchable } from '../styles/BaseStyles.js';
 import AddButtonSource from './../../assets/add-button.png';
-
 
 const { width, height } = Dimensions.get('window');
 
@@ -25,37 +25,46 @@ const Photo = styled.Image`
 `;
 
 const TouchPhoto = styled(TouchableOpacity)`
-  width: ${width/3};
-  height: ${height/3};
+  width: ${width / 3};
+  height: ${height / 3};
 `;
 
 const AddPhotosButton = styled(AddBookTouchable)`
-  width: ${width/3};
-  height: ${height/3};
+  width: ${width / 3};
+  height: ${height / 3};
 `;
-
 
 const styles = StyleSheet.create({
   center: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
+    flexWrap: 'wrap'
+  }
 });
 
 class Book extends Component {
   state = {
-    photos: [],
+    photos: []
   };
 
   getPhotos() {
     CameraRoll.getPhotos({
-      first: 20,
+      first: 20
     }).then(res => this.setState({ photos: res.edges }));
   }
 
+  addPhoto = () => {
+    ImagePickerIOS.openSelectDialog(
+      {},
+      imageUri => {
+        this.setState({ photos: [...this.state.photos, imageUri] });
+      },
+      error => console.error(error)
+    );
+  };
+
   componentDidMount() {
-    this.getPhotos();
+    //this.getPhotos();
   }
 
   render() {
@@ -63,22 +72,16 @@ class Book extends Component {
     console.log(photos);
     const renderPhotos = photos.map(photo => {
       return (
-        <TouchPhoto
-          url={photo.node.image.uri}
-          key={photo.node.image.uri}>
-          <Photo
-            key={photo.node.image.uri}
-            source={{ uri: photo.node.image.uri }}
-          />
+        <TouchPhoto key={photo}>
+          <Photo source={{ uri: photo }} />
         </TouchPhoto>
       );
     });
 
-
     return (
       <BookContainer contentContainerStyle={styles.center}>
         {renderPhotos}
-        <AddPhotosButton>
+        <AddPhotosButton onPress={this.addPhoto}>
           <AddBookIcon source={AddButtonSource} resizeMode="contain" />
         </AddPhotosButton>
       </BookContainer>
