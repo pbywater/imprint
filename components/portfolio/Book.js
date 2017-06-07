@@ -59,7 +59,10 @@ class Book extends Component {
       imageUri => {
         this.setState({ photos: [...this.state.photos, imageUri] });
       },
-      error => console.error(error)
+      error => {
+        console.log('error', error);
+        return this.setState({ error });
+      }
     );
   };
 
@@ -69,10 +72,10 @@ class Book extends Component {
 
   render() {
     const { photos } = this.state;
-    console.log(photos);
+    const { navigate } = this.props.navigation;
     const renderPhotos = photos.map(photo => {
       return (
-        <TouchPhoto key={photo}>
+        <TouchPhoto key={photo} onPress={() => navigate('Gallery', { photos })}>
           <Photo source={{ uri: photo }} />
         </TouchPhoto>
       );
