@@ -6,12 +6,12 @@ import {
   View,
   TouchableHighlight,
   TouchableOpacity,
-  TextInput
+  TextInput,
 } from 'react-native';
 import styled from 'styled-components/native';
 
 import AddButtonSource from './../../assets/add-button.png';
-import defaultFeaturedImage from './../../assets/default-featured-image.png'
+import defaultFeaturedImage from './../../assets/default-featured-image.png';
 
 import { Title, AddBookIcon, AddBookTouchable } from '../styles/BaseStyles.js';
 
@@ -61,10 +61,10 @@ const AddNewBookTouchable = styled(AddBookTouchable)`
 
 class Portfolio extends Component {
   state = {
-    text: "Add title",
+    text: 'Add title',
     photos: [],
     books: [
-      { title: 'Outdoors', id: 24758 }
+      { title: 'Outdoors', id: 24758 },
       // { title: 'Windsor', id: 31708 },
       // { title: 'Burberry', id: 94478 },
       // { title: 'Editorial', id: 13456 },
@@ -72,12 +72,12 @@ class Portfolio extends Component {
       // { title: 'Windsor', id: 34708 },
       // { title: 'Burberry', id: 34478 },
       // { title: 'Editorial', id: 23456 },
-    ]
+    ],
   };
 
-  addNewBook = (e) => {
+  addNewBook = e => {
     this.setState({
-      books: [...this.state.books, {title: this.state.text, id: Date.now()}]
+      books: [...this.state.books, { title: this.state.text, id: Date.now() }],
     });
     console.log(e);
   };
@@ -87,12 +87,11 @@ class Portfolio extends Component {
     const { navigate } = this.props.navigation;
 
     const renderBooks = books.map(book =>
-      <BookContainer>
-        <BookTouchable key={book.id} onPress={() => navigate('Book')}>
-          <BookCover source={defaultFeaturedImage}>
-          </BookCover>
+      <BookContainer key={book.id}>
+        <BookTouchable onPress={() => navigate('Book')}>
+          <BookCover source={defaultFeaturedImage} />
         </BookTouchable>
-        <BookTitle placeholder={book.title}></BookTitle>
+        <BookTitle placeholder={book.title} />
       </BookContainer>
     );
 
@@ -100,10 +99,13 @@ class Portfolio extends Component {
       <PortfolioList>
         {renderBooks}
         <BookContainer>
-          <AddNewBookTouchable onPress={(e) => this.addNewBook(e)}>
+          <AddNewBookTouchable onPress={e => this.addNewBook(e)}>
             <AddBookIcon source={AddButtonSource} resizeMode="contain" />
           </AddNewBookTouchable>
-          <BookTitle value={this.state.text} onChangeText={(text) => this.setState({text})}/>
+          <BookTitle
+            value={this.state.text}
+            onChangeText={text => this.setState({ text })}
+          />
         </BookContainer>
       </PortfolioList>
     );
