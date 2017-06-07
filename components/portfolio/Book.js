@@ -57,14 +57,7 @@ class Book extends Component {
     ImagePickerIOS.openSelectDialog(
       {},
       imageUri => {
-        const photo = {
-          node: {
-            image: {
-              uri: imageUri
-            }
-          }
-        };
-        this.setState({ photos: [...this.state.photos, photo] });
+        this.setState({ photos: [...this.state.photos, imageUri] });
       },
       error => console.error(error)
     );
@@ -79,11 +72,8 @@ class Book extends Component {
     console.log(photos);
     const renderPhotos = photos.map(photo => {
       return (
-        <TouchPhoto url={photo.node.image.uri} key={photo.node.image.uri}>
-          <Photo
-            key={photo.node.image.uri}
-            source={{ uri: photo.node.image.uri }}
-          />
+        <TouchPhoto key={photo}>
+          <Photo source={{ uri: photo }} />
         </TouchPhoto>
       );
     });
