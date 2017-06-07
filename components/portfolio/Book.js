@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Image,
   CameraRoll,
@@ -7,13 +8,13 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  ImagePickerIOS,
+  ImagePickerIOS
 } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import { AddBookIcon, AddBookTouchable } from '../styles/BaseStyles.js';
 import AddButtonSource from './../../assets/add-button.png';
-import { connect } from 'react-redux';
+import { addPhoto } from './../../redux/actions';
 
 const { width, height } = Dimensions.get('window');
 
@@ -39,20 +40,20 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
+    flexWrap: 'wrap'
+  }
 });
 
 class Book extends Component {
   state = {
-    photos: [],
+    photos: []
   };
 
-  addPhoto = () => {
+  addPhoto = bookTitle => {
     ImagePickerIOS.openSelectDialog(
       {},
       imageUri => {
-        this.setState({ photos: [...this.state.photos, imageUri] });
+        this.props.addPhoto(bookTitle, imageUri);
       },
       error => {
         console.log('error', error);
@@ -61,17 +62,14 @@ class Book extends Component {
     );
   };
 
-  componentDidMount() {
-    // console.log('=========== mounting book');
-  }
-
   render() {
-    console.log(this.props.state);
-    const { photos } = this.state;
     const { navigate } = this.props.navigation;
+    const { title } = this.props.navigation.state.params;
+    //Only renders photos for the correct book
+    const { photos } = this.props.books.find(book => book.title === title);
     const renderPhotos = photos.map(photo => {
       return (
-        <TouchPhoto key={photo} onPress={() => navigate('Gallery', { photos })}>
+        <TouchPhoto key={photo} onPress={() => navigate('Gallery')}>
           <Photo source={{ uri: photo }} />
         </TouchPhoto>
       );
@@ -80,7 +78,7 @@ class Book extends Component {
     return (
       <BookContainer contentContainerStyle={styles.center}>
         {renderPhotos}
-        <AddPhotosButton onPress={this.addPhoto}>
+        <AddPhotosButton onPress={() => this.addPhoto(title)}>
           <AddBookIcon source={AddButtonSource} resizeMode="contain" />
         </AddPhotosButton>
       </BookContainer>
@@ -89,6 +87,6 @@ class Book extends Component {
 }
 
 function mapStateToProps(state) {
-  return {state}
+  return { books: state.books };
 }
-export default connect(mapStateToProps)(Book);
+export default connect(mapStateToProps, { addPhoto })(Book);
