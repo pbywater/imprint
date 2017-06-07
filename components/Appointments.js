@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { TabNavigator } from 'react-navigation';
 import Upcoming from './appointments/Upcoming.js';
 
-const AppointmentsContainer = styled.View`
-flex: 1;
-align-items: center;
-`;
+const styles = StyleSheet.create({
+  center: {
+    alignItems: 'center',
+    flex: 1,
+  },
+});
+
+const AppointmentsContainer = styled.ScrollView``;
 
 class Appointments extends Component {
   state = {
@@ -29,14 +33,11 @@ class Appointments extends Component {
     ],
   };
   render() {
-    const upcomingList = this.state.appointments.map(appointment => (
-      <Upcoming
-        key={`${appointment.name}${appointment.time}`}
-        {...appointment}
-      />
+    const upcomingList = this.state.appointments.map((appointment, index) => (
+      <Upcoming {...appointment} key={index} />
     ));
     return (
-      <AppointmentsContainer>
+      <AppointmentsContainer contentContainerStyle={styles.center}>
         {upcomingList}
       </AppointmentsContainer>
     );
