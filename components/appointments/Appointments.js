@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { TabNavigator } from 'react-navigation';
-import Upcoming from './appointments/Upcoming.js';
+import Upcoming from './Upcoming.js';
 
 const styles = StyleSheet.create({
   center: {

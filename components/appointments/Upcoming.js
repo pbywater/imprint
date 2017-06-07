@@ -32,7 +32,6 @@ const BodyText = styled(Title)`
 `;
 
 const TouchInput = styled.TouchableOpacity`
-  color: white;
   border: 1px solid white;
   height: 100;
   width: 100;
@@ -41,12 +40,12 @@ const TouchInput = styled.TouchableOpacity`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: ''
+    text: '',
   };
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit
+      edit: !this.state.edit,
     });
   };
   render() {
