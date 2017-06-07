@@ -12,9 +12,10 @@ import {
 } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
+
+import { addPhoto, selectBook } from './../../redux/actions';
 import { AddBookIcon, AddBookTouchable } from '../styles/BaseStyles.js';
 import AddButtonSource from './../../assets/add-button.png';
-import { addPhoto } from './../../redux/actions';
 
 const { width, height } = Dimensions.get('window');
 
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
 
 class Book extends Component {
   state = {
-    photos: []
+    error: ''
   };
 
   addPhoto = bookTitle => {
@@ -69,7 +70,13 @@ class Book extends Component {
     const { photos } = this.props.books.find(book => book.title === title);
     const renderPhotos = photos.map(photo => {
       return (
-        <TouchPhoto key={photo} onPress={() => navigate('Gallery')}>
+        <TouchPhoto
+          key={photo}
+          onPress={() => {
+            this.props.selectBook(title);
+            navigate('Gallery', { title });
+          }}
+        >
           <Photo source={{ uri: photo }} />
         </TouchPhoto>
       );
@@ -89,4 +96,4 @@ class Book extends Component {
 function mapStateToProps(state) {
   return { books: state.books };
 }
-export default connect(mapStateToProps, { addPhoto })(Book);
+export default connect(mapStateToProps, { addPhoto, selectBook })(Book);

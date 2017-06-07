@@ -14,3 +14,17 @@ export function addBook(book) {
     book
   };
 }
+
+export function selectBook(book) {
+  return {
+    type: c.SELECT_BOOK,
+    book
+  };
+}
+
+export function timeUser(photo) {
+  return {
+    type: c.TIME_USER,
+    photo
+  };
+}

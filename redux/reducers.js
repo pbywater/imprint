@@ -16,11 +16,22 @@ function books(state = [], action) {
       return [...state, action.book];
     case c.ADD_PHOTO:
       return updatedBooks(state, action);
+    case c.SELECT_BOOK:
+      return updatedBooks(state, action);
+    default:
+      return state;
+  }
+}
+function selectedBook(state = '', action) {
+  switch (action.type) {
+    case c.SELECT_BOOK:
+      return action.book;
     default:
       return state;
   }
 }
 
 export default combineReducers({
-  books
+  books,
+  selectedBook
 });

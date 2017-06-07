@@ -5,25 +5,28 @@ import Gallery from 'react-native-gallery';
 import styled from 'styled-components/native';
 
 class PhotoGallery extends Component {
-  startTimer = () => {
-    const currentTime = Date.now();
+  startTimer = photo => {
+    const startTime = Date.now();
+    this.props.startTimer(startTime, photo);
   };
   render() {
-    const { books } = this.props;
-    const photos = books.map(book => book.photos)
+    const { books, selectedBook } = this.props;
+    const { photos } = books.find(book => selectedBook === book.title);
     return (
       <Gallery
         style={{ flex: 1, backgroundColor: 'white' }}
         images={photos}
-        onPageSelected={() => this.startTimer()}
+        onPageSelected={index => this.startTimer(photos[index])}
       />
     );
   }
 }
 
 function mapStateToProps(state) {
+  const { selectedBook, books } = state;
   return {
-    books: state.books
+    books,
+    selectedBook
   };
 }
 
