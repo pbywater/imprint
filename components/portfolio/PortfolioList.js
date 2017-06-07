@@ -38,7 +38,6 @@ height: 30%;
 `;
 
 const AddBookIcon = styled.Image`
- flex: 0.5;
  width: 30%;
  height: auto;
 `;

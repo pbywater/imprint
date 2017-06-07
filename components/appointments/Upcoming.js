@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Text, View, Picker, TouchableOpacity, TextInput } from "react-native";
-import styled from "styled-components/native";
+import React, { Component } from 'react';
+import { Text, View, Picker, TouchableOpacity, TextInput } from 'react-native';
+import styled from 'styled-components/native';
 import {
   GeneralButton,
   Title,
   SelectOption,
-  titleStyle
-} from "../styles/BaseStyles.js";
+  titleStyle,
+} from '../styles/BaseStyles.js';
 
 const UpcomingContainer = styled.View`
   width: 90%;
@@ -17,7 +17,8 @@ const UpcomingContainer = styled.View`
 const UpcomingBox = styled.View`
   width: 90%;
   height: 100%;
-  background-color: #38384E;
+  ${/* background-color: #38384E; */ ''}
+  background-color: ${props => (props.isEdit ? 'blue' : '#38384E')};
   display: flex;
   flex-direction: row;
 `;
@@ -55,12 +56,12 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: ""
+    text: '',
   };
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit
+      edit: !this.state.edit,
     });
   };
   render() {
