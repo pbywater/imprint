@@ -6,10 +6,11 @@ import {
   View,
   TouchableHighlight,
   TouchableOpacity,
-  TextInput,
+  TextInput
 } from 'react-native';
 import styled from 'styled-components/native';
-
+import { connect } from 'react-redux';
+import { addBook } from './../../redux/actions';
 import AddButtonSource from './../../assets/add-button.png';
 import defaultFeaturedImage from './../../assets/default-featured-image.png';
 
@@ -61,34 +62,34 @@ const AddNewBookTouchable = styled(AddBookTouchable)`
 
 class Portfolio extends Component {
   state = {
-    text: 'Add title',
+    text: '',
     photos: [],
-    books: [
-      { title: 'Outdoors', id: 24758 },
-      // { title: 'Windsor', id: 31708 },
-      // { title: 'Burberry', id: 94478 },
-      // { title: 'Editorial', id: 13456 },
-      // { title: 'Outdoors', id: 34758 },
-      // { title: 'Windsor', id: 34708 },
-      // { title: 'Burberry', id: 34478 },
-      // { title: 'Editorial', id: 23456 },
-    ],
+    books: [{ title: 'Outdoors', id: 24758 }]
   };
 
   addNewBook = e => {
-    this.setState({
-      books: [...this.state.books, { title: this.state.text, id: Date.now() }],
-    });
-    console.log(e);
+    if (this.state.text.length < 3) {
+      return;
+      //Potentially show a model explaining the error or can also set text
+      //state so it shows in the input but is annoying
+      //return this.setState({ text: 'You must Input a title' });
+    }
+    this.props.addBook({ title: this.state.text, id: Date.now(), photos: [] });
+    this.setState({ text: '' });
   };
 
   render() {
-    const { books, photos } = this.state;
+    const { books, photos } = this.props;
     const { navigate } = this.props.navigation;
 
     const renderBooks = books.map(book =>
       <BookContainer key={book.id}>
-        <BookTouchable onPress={() => navigate('Book')}>
+        <BookTouchable
+          onPress={() =>
+            book.title.length < 3
+              ? addNewBook()
+              : navigate('Book', { title: book.title })}
+        >
           <BookCover source={defaultFeaturedImage} />
         </BookTouchable>
         <BookTitle placeholder={book.title} />
@@ -103,6 +104,7 @@ class Portfolio extends Component {
             <AddBookIcon source={AddButtonSource} resizeMode="contain" />
           </AddNewBookTouchable>
           <BookTitle
+            placeholder="Enter A Title"
             value={this.state.text}
             onChangeText={text => this.setState({ text })}
           />
@@ -112,4 +114,11 @@ class Portfolio extends Component {
   }
 }
 
-export default Portfolio;
+function mapStateToProps(state) {
+  return {
+    photos: state.photos,
+    books: state.books
+  };
+}
+
+export default connect(mapStateToProps, { addBook })(Portfolio);
