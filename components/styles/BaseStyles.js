@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
-import { Text, TextInput, View, TouchableOpacity } from 'react-native';
-import styled, { css } from 'styled-components/native';
+import React, { Component } from "react";
+import { Text, TextInput, View, TouchableOpacity } from "react-native";
+import styled, { css } from "styled-components/native";
 
 const font = css`font-family: Helvetica;`;
 const centering = css`
   display: flex;
   align-items: center;
   justify-content: center;`;
+export const titleStyle = css`
+  font-style: italic;
+  font-weight: 700;
+  font-size: 20;
+  `;
 
 export const GeneralButton = styled.TouchableOpacity`
   width: 110;
@@ -18,9 +23,7 @@ export const GeneralButton = styled.TouchableOpacity`
 
 export const Title = styled.Text`
   font-family: Helvetica;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 20;
+  ${titleStyle};
   color: white;
   padding: 2%;
 `;

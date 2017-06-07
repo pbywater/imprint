@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Image,
   CameraRoll,
   Text,
   View,
   TouchableHighlight,
-  TouchableOpacity,
-} from 'react-native';
-import styled from 'styled-components/native';
+  TouchableOpacity
+} from "react-native";
+import styled from "styled-components/native";
 
-import AddButtonSource from './../../assets/add-button.png';
+import AddButtonSource from "./../../assets/add-button.png";
 
-import {AddBookIcon, AddBookTouchable} from '../styles/BaseStyles.js'
+import { AddBookIcon, AddBookTouchable } from "../styles/BaseStyles.js";
 
 const BookCover = styled.View`
-  ${/* border: palevioletred 1px solid; */ ''}
+  ${/* border: palevioletred 1px solid; */ ""}
   width: 100%;
   height: 100%;
 `;
@@ -39,12 +39,11 @@ width: 30%;
 height: 30%;
 `;
 
-
 class Portfolio extends Component {
   state = {
     photos: [],
     books: [
-      { title: 'Outdoors', id: 24758 },
+      { title: "Outdoors", id: 24758 }
       // { title: 'Windsor', id: 31708 },
       // { title: 'Burberry', id: 94478 },
       // { title: 'Editorial', id: 13456 },
@@ -52,20 +51,20 @@ class Portfolio extends Component {
       // { title: 'Windsor', id: 34708 },
       // { title: 'Burberry', id: 34478 },
       // { title: 'Editorial', id: 23456 },
-    ],
+    ]
   };
 
   render() {
     const { books, photos } = this.state;
     const { navigate } = this.props.navigation;
 
-    const renderBooks = books.map(book => (
-      <BookTouchable key={book.id} onPress={() => navigate('Book')}>
+    const renderBooks = books.map(book =>
+      <BookTouchable key={book.id} onPress={() => navigate("Book")}>
         <BookCover>
           <Text>{book.title}</Text>
         </BookCover>
       </BookTouchable>
-    ));
+    );
 
     return (
       <PortfolioList>
