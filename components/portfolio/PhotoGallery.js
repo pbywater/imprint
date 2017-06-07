@@ -4,10 +4,14 @@ import { Text, View } from 'react-native';
 import Gallery from 'react-native-gallery';
 import styled from 'styled-components/native';
 
+import { timeUser } from './../../redux/actions';
+
 class PhotoGallery extends Component {
+  //TODO use the library's on page selected method which returns the index of
+  //the photo to find the photo then do some timing stuff??
   startTimer = photo => {
     const startTime = Date.now();
-    this.props.startTimer(startTime, photo);
+    this.props.timeUser(startTime, photo);
   };
   render() {
     const { books, selectedBook } = this.props;
@@ -30,4 +34,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(PhotoGallery);
+export default connect(mapStateToProps, { timeUser })(PhotoGallery);
