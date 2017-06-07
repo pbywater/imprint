@@ -7,7 +7,7 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  ImagePickerIOS
+  ImagePickerIOS,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
@@ -38,20 +38,14 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    flexWrap: 'wrap'
-  }
+    flexWrap: 'wrap',
+  },
 });
 
 class Book extends Component {
   state = {
-    photos: []
+    photos: [],
   };
-
-  getPhotos() {
-    CameraRoll.getPhotos({
-      first: 20
-    }).then(res => this.setState({ photos: res.edges }));
-  }
 
   addPhoto = () => {
     ImagePickerIOS.openSelectDialog(
@@ -67,7 +61,7 @@ class Book extends Component {
   };
 
   componentDidMount() {
-    //this.getPhotos();
+    // console.log('=========== mounting book');
   }
 
   render() {
