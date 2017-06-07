@@ -6,9 +6,13 @@ import {
   View,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
+import {AddBookIcon, AddBookTouchable} from '../styles/BaseStyles.js';
+import AddButtonSource from './../../assets/add-button.png';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -17,9 +21,19 @@ const BookContainer = styled.ScrollView`
 `;
 
 const Photo = styled.Image`
-  width: 200;
-  height: 200;
+  flex: 1;
 `;
+
+const TouchPhoto = styled(TouchableOpacity)`
+  width: ${width/3};
+  height: ${height/3};
+`;
+
+const AddPhotosButton = styled(AddBookTouchable)`
+  width: ${width/3};
+  height: ${height/3};
+`;
+
 
 const styles = StyleSheet.create({
   center: {
@@ -49,16 +63,24 @@ class Book extends Component {
     console.log(photos);
     const renderPhotos = photos.map(photo => {
       return (
-        <Photo
-          key={photo.node.image.uri}
-          source={{ uri: photo.node.image.uri }}
-        />
+        <TouchPhoto
+          url={photo.node.image.uri}
+          key={photo.node.image.uri}>
+          <Photo
+            key={photo.node.image.uri}
+            source={{ uri: photo.node.image.uri }}
+          />
+        </TouchPhoto>
       );
     });
+
 
     return (
       <BookContainer contentContainerStyle={styles.center}>
         {renderPhotos}
+        <AddPhotosButton>
+          <AddBookIcon source={AddButtonSource} resizeMode="contain" />
+        </AddPhotosButton>
       </BookContainer>
     );
   }

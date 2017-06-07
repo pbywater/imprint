@@ -11,6 +11,8 @@ import styled from 'styled-components/native';
 
 import AddButtonSource from './../../assets/add-button.png';
 
+import {AddBookIcon, AddBookTouchable} from '../styles/BaseStyles.js'
+
 const BookCover = styled.View`
   ${/* border: palevioletred 1px solid; */ ''}
   width: 100%;
@@ -37,19 +39,6 @@ width: 30%;
 height: 30%;
 `;
 
-const AddBookIcon = styled.Image`
- flex: 0.5;
- width: 30%;
- height: auto;
-`;
-
-const AddBookTouchable = styled.TouchableOpacity`
-align-items: center;
-justify-content: center;
-width: 30%;
-height: 30%;
-background-color: #38384E;
-`;
 
 class Portfolio extends Component {
   state = {
