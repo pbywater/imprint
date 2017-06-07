@@ -72,18 +72,43 @@ class Upcoming extends Component {
     });
   };
   render() {
-    const { name, portfolio, notes, address, time, isEdit } = this.props;
+    const {
+      name,
+      portfolio,
+      notes,
+      address,
+      time,
+      isEdit,
+      handleTextChange,
+      id
+    } = this.props;
     return (
       <UpcomingContainer>
         <UpcomingBox isEdit={isEdit}>
           <ThirdOfBox>
-            <TouchInput isEdit={isEdit} />
-            <SubheadingTouchInput isEdit={isEdit} />
-            <BodyTouchInput isEdit={isEdit} />
+            <TouchInput
+              isEdit={isEdit}
+              value={name}
+              onChangeText={text => handleTextChange(text, "name", id)}
+            />
+            <SubheadingTouchInput
+              isEdit={isEdit}
+              value={time}
+              onChangeText={text => handleTextChange(text, "time", id)}
+            />
+            <BodyTouchInput
+              isEdit={isEdit}
+              value={address}
+              onChangeText={text => handleTextChange(text, "address", id)}
+            />
           </ThirdOfBox>
           <ThirdOfBox>
             <Subheading isEdit={isEdit}>Notes</Subheading>
-            <TouchInput isEdit={isEdit} />
+            <BodyTouchInput
+              isEdit={isEdit}
+              value={notes}
+              onChangeText={text => handleTextChange(text, "notes", id)}
+            />
           </ThirdOfBox>
           <ThirdOfBox>
             <Subheading isEdit={isEdit}>Portfolio</Subheading>
