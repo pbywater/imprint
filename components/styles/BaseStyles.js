@@ -32,3 +32,17 @@ border: 1px solid white;
 ${centering}
 margin: 10%;
 `;
+
+export const AddBookIcon = styled.Image`
+ flex: 0.5;
+ width: 30%;
+ height: auto;
+`;
+
+export const AddBookTouchable = styled.TouchableOpacity`
+align-items: center;
+justify-content: center;
+width: 30%;
+height: 30%;
+background-color: #38384E;
+`;
