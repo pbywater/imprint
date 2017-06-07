@@ -4,8 +4,11 @@ import Appointments from './components/appointments/Appointments';
 import Portfolio from './components/portfolio/Portfolio';
 import Book from './components/portfolio/Book';
 import Stats from './components/stats/Stats';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './redux/reducers.js';
 
-const App = TabNavigator(
+const AppWithNavigationState = TabNavigator(
   {
     Appointments: { screen: Appointments },
     Portfolio: { screen: Portfolio },
@@ -15,5 +18,17 @@ const App = TabNavigator(
     tabBarPosition: 'top',
   }
 );
+
+class App extends Component {
+  store = createStore(rootReducer);
+  render() {
+    return (
+      <Provider store={this.store}>
+      <AppWithNavigationState/>
+    </Provider>
+  );
+  }
+}
+
 
 export default App;

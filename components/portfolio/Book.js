@@ -13,6 +13,7 @@ import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import { AddBookIcon, AddBookTouchable } from '../styles/BaseStyles.js';
 import AddButtonSource from './../../assets/add-button.png';
+import { connect } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
 
@@ -65,6 +66,7 @@ class Book extends Component {
   }
 
   render() {
+    console.log(this.props.state);
     const { photos } = this.state;
     const { navigate } = this.props.navigation;
     const renderPhotos = photos.map(photo => {
@@ -86,4 +88,7 @@ class Book extends Component {
   }
 }
 
-export default Book;
+function mapStateToProps(state) {
+  return {state}
+}
+export default connect(mapStateToProps)(Book);

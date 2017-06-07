@@ -12,6 +12,7 @@ import styled from 'styled-components/native';
 import { TabNavigator } from 'react-navigation';
 import Upcoming from './Upcoming.js';
 import AddButtonSource from './../../assets/add-button.png';
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
   center: {
@@ -128,7 +129,6 @@ class Appointments extends Component {
   };
 
   render() {
-    console.log(this.state.appointments);
     const upcomingList = this.state.appointments.map((appointment, index) =>
       <Upcoming
         {...appointment}
@@ -150,5 +150,7 @@ class Appointments extends Component {
     );
   }
 }
-
-export default Appointments;
+function mapStateToProps(state) {
+  return {state}
+}
+export default connect(mapStateToProps)(Appointments);
