@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Text, View, Picker, TouchableOpacity, TextInput } from "react-native";
-import styled, { css } from "styled-components/native";
+import React, { Component } from 'react';
+import { Text, View, Picker, TouchableOpacity, TextInput } from 'react-native';
+import styled, { css } from 'styled-components/native';
 import {
   GeneralButton,
   Title,
   SelectOption,
-  titleStyle
-} from "../styles/BaseStyles.js";
+  titleStyle,
+} from '../styles/BaseStyles.js';
 
 const textColor = css`
-color: ${props => (props.isEdit ? "#38384E" : "white")};
+color: ${props => (props.isEdit ? '#38384E' : 'white')};
 `;
 
 const UpcomingContainer = styled.View`
@@ -21,9 +21,9 @@ const UpcomingContainer = styled.View`
 const UpcomingBox = styled.View`
   width: 90%;
   height: 100%;
-  ${/* background-color: #38384E; */ ""}
-  background-color: ${props => (props.isEdit ? "white" : "#38384E")};
-  border: ${props => (props.isEdit ? "5px solid #38384E" : "white")};
+  ${/* background-color: #38384E; */ ''}
+  background-color: ${props => (props.isEdit ? 'white' : '#38384E')};
+  border: ${props => (props.isEdit ? '5px solid #38384E' : 'white')};
   display: flex;
   flex-direction: row;
 `;
@@ -47,7 +47,7 @@ const TouchInput = styled.TextInput`
 height: 40;
 ${titleStyle};
 ${textColor};
-border: ${props => (props.isEdit ? "1px solid #38384E" : "1px solid white")};
+border: ${props => (props.isEdit ? '1px solid #38384E' : '1px solid white')};
 `;
 
 const BodyTouchInput = styled(TouchInput)`
@@ -63,12 +63,12 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: ""
+    text: '',
   };
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit
+      edit: !this.state.edit,
     });
   };
   render() {
@@ -80,7 +80,9 @@ class Upcoming extends Component {
       time,
       isEdit,
       handleTextChange,
-      id
+      handleSave,
+      handleLaunch,
+      id,
     } = this.props;
     return (
       <UpcomingContainer>
@@ -89,17 +91,17 @@ class Upcoming extends Component {
             <TouchInput
               isEdit={isEdit}
               value={name}
-              onChangeText={text => handleTextChange(text, "name", id)}
+              onChangeText={text => handleTextChange(text, 'name', id)}
             />
             <SubheadingTouchInput
               isEdit={isEdit}
               value={time}
-              onChangeText={text => handleTextChange(text, "time", id)}
+              onChangeText={text => handleTextChange(text, 'time', id)}
             />
             <BodyTouchInput
               isEdit={isEdit}
               value={address}
-              onChangeText={text => handleTextChange(text, "address", id)}
+              onChangeText={text => handleTextChange(text, 'address', id)}
             />
           </ThirdOfBox>
           <ThirdOfBox>
@@ -107,7 +109,7 @@ class Upcoming extends Component {
             <BodyTouchInput
               isEdit={isEdit}
               value={notes}
-              onChangeText={text => handleTextChange(text, "notes", id)}
+              onChangeText={text => handleTextChange(text, 'notes', id)}
             />
           </ThirdOfBox>
           <ThirdOfBox>
@@ -115,9 +117,11 @@ class Upcoming extends Component {
             <SelectOption>
               <BodyText isEdit={isEdit}>{portfolio}</BodyText>
             </SelectOption>
-            <GeneralButton>
-              <Title isEdit={isEdit}>
-                Launch
+            <GeneralButton
+              onPress={isEdit ? () => handleSave(id) : handleLaunch}
+            >
+              <Title>
+                {isEdit ? 'Save' : 'Launch'}
               </Title>
             </GeneralButton>
           </ThirdOfBox>
