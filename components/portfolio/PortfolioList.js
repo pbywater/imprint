@@ -38,14 +38,16 @@ height: 30%;
 `;
 
 const AddBookIcon = styled.Image`
-width: 50%;
-height: 50%;
+ flex: 0.5;
+ width: 30%;
+ height: auto;
 `;
 
 const AddBookTouchable = styled.TouchableOpacity`
+align-items: center;
+justify-content: center;
 width: 30%;
 height: 30%;
-${/* background-color: #F44243; */ ''}
 background-color: #38384E;
 `;
 
@@ -53,7 +55,7 @@ class Portfolio extends Component {
   state = {
     photos: [],
     books: [
-      // { title: 'Outdoors', id: 24758 },
+      { title: 'Outdoors', id: 24758 },
       // { title: 'Windsor', id: 31708 },
       // { title: 'Burberry', id: 94478 },
       // { title: 'Editorial', id: 13456 },
@@ -80,7 +82,7 @@ class Portfolio extends Component {
       <PortfolioList>
         {renderBooks}
         <AddBookTouchable>
-          <AddBookIcon source={AddButtonSource} />
+          <AddBookIcon source={AddButtonSource} resizeMode="contain" />
         </AddBookTouchable>
       </PortfolioList>
     );
