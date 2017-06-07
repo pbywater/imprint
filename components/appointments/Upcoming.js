@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
-import { Text, View, Picker, TouchableOpacity, TextInput } from 'react-native';
-import styled from 'styled-components/native';
-import { GeneralButton, Title, SelectOption } from '../styles/BaseStyles.js';
+import React, { Component } from "react";
+import { Text, View, Picker, TouchableOpacity, TextInput } from "react-native";
+import styled from "styled-components/native";
+import {
+  GeneralButton,
+  Title,
+  SelectOption,
+  titleStyle
+} from "../styles/BaseStyles.js";
 
 const UpcomingContainer = styled.View`
   width: 90%;
@@ -31,21 +36,31 @@ const BodyText = styled(Title)`
   font-size: 12;
 `;
 
-const TouchInput = styled.TouchableOpacity`
-  border: 1px solid white;
-  height: 100;
-  width: 100;
+const TouchInput = styled.TextInput`
+height: 40;
+border: 1px solid white;
+${titleStyle};
+color: white;
+`;
+
+const BodyTouchInput = styled(TouchInput)`
+  font-size: 12;
+  font-style: normal;
+`;
+
+const SubheadingTouchInput = styled(BodyTouchInput)`
+  font-size: 15;
 `;
 
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: '',
+    text: ""
   };
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit,
+      edit: !this.state.edit
     });
   };
   render() {
@@ -54,22 +69,13 @@ class Upcoming extends Component {
       <UpcomingContainer>
         <UpcomingBox>
           <ThirdOfBox>
-            {this.state.edit
-              ? <TouchInput onPress={this.editDetails}>
-                  <TextInput
-                    onChangeText={text => this.setState({ text })}
-                    editable={true}
-                  />
-                </TouchInput>
-              : <TouchInput onPress={this.editDetails}>
-                  <Title>{name}</Title>
-                </TouchInput>}
+            <TouchInput />
             <Subheading>{time}</Subheading>
-            <BodyText>{address}</BodyText>
+            <BodyTouchInput />
           </ThirdOfBox>
           <ThirdOfBox>
             <Subheading>Notes</Subheading>
-            <BodyText>{notes}</BodyText>
+            <TouchInput />
           </ThirdOfBox>
           <ThirdOfBox>
             <Subheading>Portfolio</Subheading>
