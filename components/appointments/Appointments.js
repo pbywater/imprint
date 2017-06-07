@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,18 +6,18 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Image
-} from "react-native";
-import styled from "styled-components/native";
-import { TabNavigator } from "react-navigation";
-import Upcoming from "./Upcoming.js";
-import AddButtonSource from "./../../assets/add-button.png";
+  Image,
+} from 'react-native';
+import styled from 'styled-components/native';
+import { TabNavigator } from 'react-navigation';
+import Upcoming from './Upcoming.js';
+import AddButtonSource from './../../assets/add-button.png';
 
 const styles = StyleSheet.create({
   center: {
-    alignItems: "center",
-    flex: 1
-  }
+    alignItems: 'center',
+    flex: 1,
+  },
 });
 
 const AddAppointmentTouchable = styled.TouchableOpacity`
@@ -39,22 +39,22 @@ class Appointments extends Component {
   state = {
     appointments: [
       {
-        name: "Burberry",
-        time: "14:30-17:30",
-        address: "SW1P 2AW",
-        notes: "bring heels",
-        portfolio: "Editorial",
-        isEdit: false
+        name: 'Burberry',
+        time: '14:30-17:30',
+        address: 'SW1P 2AW',
+        notes: 'bring heels',
+        portfolio: 'Editorial',
+        isEdit: false,
       },
       {
-        name: "Topshop",
-        time: "14:30-17:30",
-        address: "SW1P 2AW",
-        notes: "more dummy data",
-        portfolio: "Editorial",
-        isEdit: false
-      }
-    ]
+        name: 'Topshop',
+        time: '14:30-17:30',
+        address: 'SW1P 2AW',
+        notes: 'more dummy data',
+        portfolio: 'Editorial',
+        isEdit: false,
+      },
+    ],
   };
 
   handleNewAppointment = () => {
@@ -62,22 +62,22 @@ class Appointments extends Component {
       appointments: [
         ...this.state.appointments,
         {
-          name: "",
-          time: "",
-          address: "",
-          notes: "",
-          portfolio: "",
+          name: '',
+          time: '',
+          address: '',
+          notes: '',
+          portfolio: '',
           isEdit: true,
-          isNew: true
-        }
-      ]
+          isNew: true,
+        },
+      ],
     });
   };
 
   saveAppointment = id => {
     const { appointments } = this.state;
 
-    if (appointments[id].name === "") {
+    if (appointments[id].name === '') {
       return;
     }
 
@@ -90,12 +90,13 @@ class Appointments extends Component {
     });
 
     this.setState({
-      appointments: updatedAppointments
+      appointments: updatedAppointments,
     });
   };
 
   launchBook = () => {
-    console.log("launching book");
+    console.log('launching book');
+    this.props.navigation.navigate('Book');
   };
 
   saveText = (text, key, id) => {
@@ -108,7 +109,7 @@ class Appointments extends Component {
       }
     );
     this.setState({
-      appointments: updatedAppointments
+      appointments: updatedAppointments,
     });
   };
 
@@ -122,7 +123,7 @@ class Appointments extends Component {
       }
     );
     this.setState({
-      appointments: updatedAppointments
+      appointments: updatedAppointments,
     });
   };
 
