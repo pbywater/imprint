@@ -5,15 +5,17 @@ import {
   Text,
   View,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from 'react-native';
 import styled from 'styled-components/native';
 
 import AddButtonSource from './../../assets/add-button.png';
+import defaultFeaturedImage from './../../assets/default-featured-image.png'
 
-import { AddBookIcon, AddBookTouchable } from '../styles/BaseStyles.js';
+import { Title, AddBookIcon, AddBookTouchable } from '../styles/BaseStyles.js';
 
-const BookCover = styled.View`
+const BookCover = styled.Image`
   ${/* border: palevioletred 1px solid; */ ''}
   width: 100%;
   height: 100%;
@@ -33,14 +35,33 @@ const PortfolioList = styled.View`
   flex-wrap: wrap;
 `;
 
+const BookContainer = styled.View`
+  width: 30%;
+  height: 30%;
+`;
+
+const BookTitle = styled.TextInput`
+  text-align: center;
+  width: 100%;
+  height: 10%;
+  ::placeholder {
+    color: black;
+  }
+`;
+
 const BookTouchable = styled(TouchableHighlight)`
-border: palevioletred 1px solid;
-width: 30%;
-height: 30%;
+  width: 100%;
+  height: 90%;
+`;
+
+const AddNewBookTouchable = styled(AddBookTouchable)`
+  width: 100%;
+  height: 90%;
 `;
 
 class Portfolio extends Component {
   state = {
+    text: "Add title",
     photos: [],
     books: [
       { title: 'Outdoors', id: 24758 }
@@ -54,24 +75,36 @@ class Portfolio extends Component {
     ]
   };
 
+  addNewBook = (e) => {
+    this.setState({
+      books: [...this.state.books, {title: this.state.text, id: Date.now()}]
+    });
+    console.log(e);
+  };
+
   render() {
     const { books, photos } = this.state;
     const { navigate } = this.props.navigation;
 
     const renderBooks = books.map(book =>
-      <BookTouchable key={book.id} onPress={() => navigate('Book')}>
-        <BookCover>
-          <Text>{book.title}</Text>
-        </BookCover>
-      </BookTouchable>
+      <BookContainer>
+        <BookTouchable key={book.id} onPress={() => navigate('Book')}>
+          <BookCover source={defaultFeaturedImage}>
+          </BookCover>
+        </BookTouchable>
+        <BookTitle placeholder={book.title}></BookTitle>
+      </BookContainer>
     );
 
     return (
       <PortfolioList>
         {renderBooks}
-        <AddBookTouchable>
-          <AddBookIcon source={AddButtonSource} resizeMode="contain" />
-        </AddBookTouchable>
+        <BookContainer>
+          <AddNewBookTouchable onPress={(e) => this.addNewBook(e)}>
+            <AddBookIcon source={AddButtonSource} resizeMode="contain" />
+          </AddNewBookTouchable>
+          <BookTitle value={this.state.text} onChangeText={(text) => this.setState({text})}/>
+        </BookContainer>
       </PortfolioList>
     );
   }
