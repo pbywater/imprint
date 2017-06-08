@@ -20,15 +20,20 @@ const AppWithNavigationState = TabNavigator(
 );
 
 class App extends Component {
+  componentDidMount() {
+    Font.loadAsync({
+      Helvetica: require('./assets/Helvetica.ttf'),
+    });
+  }
+
   store = createStore(rootReducer);
   render() {
     return (
       <Provider store={this.store}>
-      <AppWithNavigationState/>
-    </Provider>
-  );
+        <AppWithNavigationState />
+      </Provider>
+    );
   }
 }
-
 
 export default App;
