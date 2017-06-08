@@ -6,7 +6,7 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Image,
+  Image
 } from 'react-native';
 import styled from 'styled-components/native';
 import { TabNavigator } from 'react-navigation';
@@ -17,8 +17,8 @@ import { connect } from 'react-redux';
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
-    flex: 1,
-  },
+    flex: 1
+  }
 });
 
 const AddAppointmentTouchable = styled.TouchableOpacity`
@@ -45,7 +45,7 @@ class Appointments extends Component {
         address: 'SW1P 2AW',
         notes: 'bring heels',
         portfolio: 'Editorial',
-        isEdit: false,
+        isEdit: false
       },
       {
         name: 'Topshop',
@@ -53,9 +53,9 @@ class Appointments extends Component {
         address: 'SW1P 2AW',
         notes: 'more dummy data',
         portfolio: 'Editorial',
-        isEdit: false,
-      },
-    ],
+        isEdit: false
+      }
+    ]
   };
 
   handleNewAppointment = () => {
@@ -69,9 +69,9 @@ class Appointments extends Component {
           notes: '',
           portfolio: '',
           isEdit: true,
-          isNew: true,
-        },
-      ],
+          isNew: true
+        }
+      ]
     });
   };
 
@@ -91,7 +91,7 @@ class Appointments extends Component {
     });
 
     this.setState({
-      appointments: updatedAppointments,
+      appointments: updatedAppointments
     });
   };
 
@@ -110,7 +110,7 @@ class Appointments extends Component {
       }
     );
     this.setState({
-      appointments: updatedAppointments,
+      appointments: updatedAppointments
     });
   };
 
@@ -124,11 +124,13 @@ class Appointments extends Component {
       }
     );
     this.setState({
-      appointments: updatedAppointments,
+      appointments: updatedAppointments
     });
   };
 
   render() {
+    const { books } = this.props.state;
+    const { navigate } = this.props.navigation;
     const upcomingList = this.state.appointments.map((appointment, index) =>
       <Upcoming
         {...appointment}
@@ -138,6 +140,8 @@ class Appointments extends Component {
         handleFocus={this.toggleEdit}
         key={index}
         id={index}
+        books={books}
+        navigate={navigate}
       />
     );
     return (
@@ -150,7 +154,9 @@ class Appointments extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
-  return {state}
+  return { state };
 }
+
 export default connect(mapStateToProps)(Appointments);

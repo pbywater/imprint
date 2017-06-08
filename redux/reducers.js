@@ -10,7 +10,13 @@ const updatedBooks = (state, action) =>
     return book;
   });
 
-function books(state = [], action) {
+function books(
+  state = [
+    { title: 'Editorial', id: 13544 },
+    { title: 'Commercial', id: 67368 }
+  ],
+  action
+) {
   switch (action.type) {
     case c.ADD_BOOK:
       return [...state, action.book];
