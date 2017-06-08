@@ -62,6 +62,10 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 `;
 
 class Upcoming extends Component {
+  // componentDidMount() {
+  //   this.props.handleBookChange(this.props.portfolio, this.props.id);
+  // }
+
   state = {
     edit: false,
     text: ''
@@ -136,6 +140,7 @@ class Upcoming extends Component {
                     isEdit={isEdit}
                     style={{ width: 150, height: 220 }}
                     selectedValue={portfolio}
+                    ref="currentBook"
                     itemStyle={
                       isEdit
                         ? { color: '#aaa', fontSize: 18 }
@@ -156,7 +161,11 @@ class Upcoming extends Component {
                   </TouchableOpacity>}
             </SelectOption>
             <GeneralButton
-              onPress={isEdit ? () => handleSave(id) : handleLaunch}>
+              onPress={
+                isEdit
+                  ? () => handleSave(id, portfolio)
+                  : () => handleLaunch(portfolio, id)
+              }>
               <Title>
                 {isEdit ? 'Save' : 'Launch'}
               </Title>

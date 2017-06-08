@@ -12,8 +12,8 @@ const updatedBooks = (state, action) =>
 
 function books(
   state = [
-    { title: 'Editorial', id: 13544, photos: [] },
-    { title: 'Commercial', id: 67368, photos: [] }
+    // { title: 'Editorial', id: 13544, photos: [] },
+    // { title: 'Commercial', id: 67368, photos: [] }
   ],
   action
 ) {
@@ -37,24 +37,24 @@ function selectedBook(state = '', action) {
 
 function appointments(
   state = [
-    {
-      name: 'Burberry',
-      time: '14:30-17:30',
-      address: 'SW1P 2AW',
-      notes: 'bring heels',
-      portfolio: 'Editorial',
-      isEdit: false,
-      isNew: false
-    },
-    {
-      name: 'Topshop',
-      time: '14:30-17:30',
-      address: 'SW1P 2AW',
-      notes: 'more dummy data',
-      portfolio: 'Commercial',
-      isEdit: false,
-      isNew: false
-    }
+    // {
+    //   name: 'Burberry',
+    //   time: '14:30-17:30',
+    //   address: 'SW1P 2AW',
+    //   notes: 'bring heels',
+    //   portfolio: 'Editorial',
+    //   isEdit: false,
+    //   isNew: false
+    // },
+    // {
+    //   name: 'Topshop',
+    //   time: '14:30-17:30',
+    //   address: 'SW1P 2AW',
+    //   notes: 'more dummy data',
+    //   portfolio: 'Commercial',
+    //   isEdit: false,
+    //   isNew: false
+    // }
   ],
   action
 ) {
@@ -96,6 +96,7 @@ function appointments(
     case c.CHANGE_BOOK:
       const changedBook = state.map((appointment, index) => {
         if (index === action.id) {
+          console.log('portfolio in changedBook ', action.portfolio);
           return { ...appointment, portfolio: action.portfolio };
         }
         return appointment;

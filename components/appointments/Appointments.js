@@ -20,7 +20,8 @@ import {
   toggleEdit,
   saveAppointment,
   changeBook,
-  editMode
+  editMode,
+  selectBook
 } from '../../redux/actions.js';
 
 const styles = StyleSheet.create({
@@ -58,16 +59,21 @@ class Appointments extends Component {
     });
   };
 
-  saveAppointment = id => {
+  saveAppointment = (id, portfolio) => {
+    console.log('portfolio in saveAppointment is ', portfolio);
     if (this.props.state.appointments[id].name === '') {
       return;
     }
     this.props.saveAppointment(id);
+    this.props.changeBook(id, portfolio);
   };
 
-  launchBook = () => {
+  launchBook = (title, id) => {
     console.log('launching book');
-    this.props.navigation.navigate('Book');
+    this.props.changeBook(title, id);
+    this.props.navigation.navigate('Gallery', {
+      title: this.props.state.selectedBook
+    });
   };
 
   saveText = (text, key, id) => {
@@ -83,6 +89,8 @@ class Appointments extends Component {
   };
 
   changeBook = (portfolio, id) => {
+    console.log('portfolio in changeBook ', changeBook);
+    this.props.selectBook(portfolio);
     this.props.changeBook(portfolio, id);
     this.props.editMode(id);
   };
@@ -127,7 +135,8 @@ function mapDispatchToProps(dispatch) {
       toggleEdit,
       saveAppointment,
       changeBook,
-      editMode
+      editMode,
+      selectBook
     },
     dispatch
   );
