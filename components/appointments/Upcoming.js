@@ -170,7 +170,7 @@ class Upcoming extends Component {
                   ? () => handleSave(id)
                   : () =>
                       handleLaunch(portfolio || (books[0] && books[0].title))
-                // above:
+                // above: add safety fallback if portfolio has not been selected
               }
             >
               <Title>
