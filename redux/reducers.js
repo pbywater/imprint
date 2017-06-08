@@ -13,7 +13,7 @@ const updatedBooks = (state, action) =>
 function books(
   state = [
     { title: 'Editorial', id: 13544, photos: [] },
-    { title: 'Commercial', id: 67368, photos: [] }
+    { title: 'Commercial', id: 67368, photos: [] },
   ],
   action
 ) {
@@ -44,17 +44,17 @@ function appointments(
       notes: 'bring heels',
       portfolio: 'Editorial',
       isEdit: false,
-      isNew: false
+      isNew: false,
     },
     {
       name: 'Topshop',
       time: '14:30-17:30',
       address: 'SW1P 2AW',
       notes: 'more dummy data',
-      portfolio: 'Editorial',
+      portfolio: 'Commercial',
       isEdit: false,
-      isNew: false
-    }
+      isNew: false,
+    },
   ],
   action
 ) {
@@ -85,6 +85,14 @@ function appointments(
         return appointment;
       });
       return savedAppointments;
+    case c.CHANGE_BOOK:
+      const changedBook = state.map((appointment, index) => {
+        if (index === action.id) {
+          return { ...appointment, portfolio: action.portfolio };
+        }
+        return appointment;
+      });
+      return changedBook;
     default:
       return state;
   }
@@ -93,5 +101,5 @@ function appointments(
 export default combineReducers({
   books,
   selectedBook,
-  appointments
+  appointments,
 });

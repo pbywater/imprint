@@ -5,7 +5,7 @@ import {
   GeneralButton,
   Title,
   SelectOption,
-  titleStyle
+  titleStyle,
 } from '../styles/BaseStyles.js';
 import Picker from 'react-native-wheel-picker';
 var PickerItem = Picker.Item;
@@ -65,12 +65,12 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: ''
+    text: '',
   };
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit
+      edit: !this.state.edit,
     });
   };
   render() {
@@ -88,7 +88,8 @@ class Upcoming extends Component {
       handleFocus,
       isNew,
       books,
-      navigate
+      navigate,
+      handleBookChange,
     } = this.props;
     return (
       <UpcomingContainer>
@@ -133,18 +134,25 @@ class Upcoming extends Component {
                 ? <Picker
                     isEdit={isEdit}
                     style={{ width: 150, height: 220 }}
-                    selectedValue={this.state.selectedItem}
+                    selectedValue={portfolio}
                     itemStyle={{ color: 'white', fontSize: 18 }}
-                    onValueChange={index => index}>
-                    <PickerItem label="editorial5" value="editorial5" />
-                    <PickerItem label="Commercial5" value="Commercial5" />
+                    onValueChange={portfolio => handleBookChange(portfolio, id)}
+                  >
+                    {books.map(book =>
+                      <PickerItem
+                        label={book.title}
+                        value={book.title}
+                        key={book.id}
+                      />
+                    )}
                   </Picker>
                 : <TouchableOpacity onPress={() => navigate('Portfolio')}>
                     <Title>Add New</Title>
                   </TouchableOpacity>}
             </SelectOption>
             <GeneralButton
-              onPress={isEdit ? () => handleSave(id) : handleLaunch}>
+              onPress={isEdit ? () => handleSave(id) : handleLaunch}
+            >
               <Title>
                 {isEdit ? 'Save' : 'Launch'}
               </Title>

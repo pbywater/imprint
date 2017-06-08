@@ -4365,6 +4365,10 @@ react-native-view-transformer@0.0.28:
     react-native-gesture-responder "0.1.1"
     react-native-scroller "0.0.6"
 
+react-native-wheel-picker@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-wheel-picker/-/react-native-wheel-picker-1.1.1.tgz#03e8c6ba340a312f67e5ae7e456589e2b56f9a55"
+
 react-native@^0.44.0:
   version "0.44.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.44.2.tgz#c8dfb747b88e6276a991980c57c50b860a98cf0e"
