@@ -29,3 +29,33 @@ export function timeUser(photo, startTime) {
     startTime
   };
 }
+
+export function addAppointment(appointment) {
+  return {
+    type: c.ADD_APPOINTMENT,
+    appointment
+  };
+}
+
+export function editAppointment(text, key, id) {
+  return {
+    type: c.EDIT_APPOINTMENT,
+    text,
+    key,
+    id
+  };
+}
+
+export function toggleEdit(id) {
+  return {
+    type: c.TOGGLE_EDIT,
+    id
+  };
+}
+
+export function saveAppointment(id) {
+  return {
+    type: c.SAVE_APPOINTMENT,
+    id
+  };
+}
