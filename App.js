@@ -7,6 +7,7 @@ import Stats from './components/stats/Stats';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './redux/reducers.js';
+import { Font } from 'expo';
 
 const AppWithNavigationState = TabNavigator(
   {

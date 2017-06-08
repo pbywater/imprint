@@ -8,7 +8,7 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  ImagePickerIOS
+  ImagePickerIOS,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    flexWrap: 'wrap'
-  }
+    flexWrap: 'wrap',
+  },
 });
 
 class Book extends Component {
   state = {
-    error: ''
+    error: '',
   };
 
   addPhoto = bookTitle => {
