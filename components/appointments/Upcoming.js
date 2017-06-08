@@ -5,7 +5,7 @@ import {
   GeneralButton,
   Title,
   SelectOption,
-  titleStyle
+  titleStyle,
 } from '../styles/BaseStyles.js';
 import Picker from 'react-native-wheel-picker';
 var PickerItem = Picker.Item;
@@ -64,12 +64,21 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: ''
+    text: '',
   };
+
+  componentDidMount() {
+    const { portfolio, addDefaultBook, books, id } = this.props;
+    // if the appointment has no no book / portfolio
+    // then assing the first book / porfolio by default
+    if (portfolio === '') {
+      addDefaultBook(books[0] && books[0].title, id);
+    }
+  }
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit
+      edit: !this.state.edit,
     });
   };
   render() {
@@ -88,10 +97,9 @@ class Upcoming extends Component {
       isNew,
       books,
       navigate,
-      handleBookChange
+      handleBookChange,
     } = this.props;
 
-    console.log('isEdit is ', isEdit, id);
     return (
       <UpcomingContainer>
         <UpcomingBox isEdit={isEdit}>
@@ -137,12 +145,13 @@ class Upcoming extends Component {
                     style={{ width: 150, height: 220 }}
                     selectedValue={portfolio}
                     itemStyle={
+                      // TODO item style currently is not updating
                       isEdit
                         ? { color: '#aaa', fontSize: 18 }
                         : { color: '#aaa', fontSize: 18 }
                     }
-                    onValueChange={portfolio =>
-                      handleBookChange(portfolio, id)}>
+                    onValueChange={portfolio => handleBookChange(portfolio, id)}
+                  >
                     {books.map(book =>
                       <PickerItem
                         label={book.title}
@@ -156,7 +165,14 @@ class Upcoming extends Component {
                   </TouchableOpacity>}
             </SelectOption>
             <GeneralButton
-              onPress={isEdit ? () => handleSave(id) : handleLaunch}>
+              onPress={
+                isEdit
+                  ? () => handleSave(id)
+                  : () =>
+                      handleLaunch(portfolio || (books[0] && books[0].title))
+                // above: add safety fallback if portfolio has not been selected
+              }
+            >
               <Title>
                 {isEdit ? 'Save' : 'Launch'}
               </Title>
