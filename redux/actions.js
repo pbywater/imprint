@@ -22,7 +22,7 @@ export function selectBook(book) {
   };
 }
 
-export function timeUser(photo, startTime) {
+export function timeUser(startTime, photo) {
   return {
     type: c.TIME_USER,
     photo,

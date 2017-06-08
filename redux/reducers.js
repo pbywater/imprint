@@ -31,7 +31,22 @@ function selectedBook(state = '', action) {
   }
 }
 
+function selectedPhoto(state = [], action) {
+  console.log('--->', action);
+  switch (action.type) {
+    case c.TIME_USER:
+    console.log(action);
+      return [
+        ...state,
+      {photo: action.photo, startTime: action.startTime, endTime: }
+      ]
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   books,
-  selectedBook
+  selectedBook,
+  selectedPhoto,
 });

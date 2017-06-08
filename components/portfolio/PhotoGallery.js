@@ -11,6 +11,7 @@ class PhotoGallery extends Component {
   //the photo to find the photo then do some timing stuff??
   startTimer = photo => {
     const startTime = Date.now();
+    console.log('----->', this.props.selectedPhoto);
     this.props.timeUser(startTime, photo);
   };
   render() {
@@ -27,10 +28,11 @@ class PhotoGallery extends Component {
 }
 
 function mapStateToProps(state) {
-  const { selectedBook, books } = state;
+  const { selectedBook, books, selectedPhoto } = state;
   return {
     books,
-    selectedBook
+    selectedBook,
+    selectedPhoto,
   };
 }
 

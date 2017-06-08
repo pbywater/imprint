@@ -68,10 +68,10 @@ class Book extends Component {
     const { title } = this.props.navigation.state.params;
     //Only renders photos for the correct book
     const { photos } = this.props.books.find(book => book.title === title);
-    const renderPhotos = photos.map(photo => {
+    const renderPhotos = photos.map((photo, index) => {
       return (
         <TouchPhoto
-          key={photo}
+          key={index}
           onPress={() => {
             this.props.selectBook(title);
             navigate('Gallery', { title });
