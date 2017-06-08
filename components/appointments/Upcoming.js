@@ -5,7 +5,7 @@ import {
   GeneralButton,
   Title,
   SelectOption,
-  titleStyle,
+  titleStyle
 } from '../styles/BaseStyles.js';
 import Picker from 'react-native-wheel-picker';
 var PickerItem = Picker.Item;
@@ -23,7 +23,6 @@ const UpcomingContainer = styled.View`
 const UpcomingBox = styled.View`
   width: 90%;
   height: 100%;
-  ${/* background-color: #38384E; */ ''}
   background-color: ${props => (props.isEdit ? 'white' : '#38384E')};
   border: ${props => (props.isEdit ? '5px solid #38384E' : 'white')};
   display: flex;
@@ -49,7 +48,7 @@ const TouchInput = styled.TextInput`
 height: 40;
 ${titleStyle};
 ${textColor};
-border: ${props => (props.isEdit ? '1px solid #38384E' : '1px solid white')};
+border: 1px solid #38384E;
 `;
 
 const BodyTouchInput = styled(TouchInput)`
@@ -65,12 +64,12 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: '',
+    text: ''
   };
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit,
+      edit: !this.state.edit
     });
   };
   render() {
@@ -89,8 +88,10 @@ class Upcoming extends Component {
       isNew,
       books,
       navigate,
-      handleBookChange,
+      handleBookChange
     } = this.props;
+
+    console.log('isEdit is ', isEdit, id);
     return (
       <UpcomingContainer>
         <UpcomingBox isEdit={isEdit}>
@@ -135,9 +136,13 @@ class Upcoming extends Component {
                     isEdit={isEdit}
                     style={{ width: 150, height: 220 }}
                     selectedValue={portfolio}
-                    itemStyle={{ color: 'white', fontSize: 18 }}
-                    onValueChange={portfolio => handleBookChange(portfolio, id)}
-                  >
+                    itemStyle={
+                      isEdit
+                        ? { color: '#aaa', fontSize: 18 }
+                        : { color: '#aaa', fontSize: 18 }
+                    }
+                    onValueChange={portfolio =>
+                      handleBookChange(portfolio, id)}>
                     {books.map(book =>
                       <PickerItem
                         label={book.title}
@@ -151,8 +156,7 @@ class Upcoming extends Component {
                   </TouchableOpacity>}
             </SelectOption>
             <GeneralButton
-              onPress={isEdit ? () => handleSave(id) : handleLaunch}
-            >
+              onPress={isEdit ? () => handleSave(id) : handleLaunch}>
               <Title>
                 {isEdit ? 'Save' : 'Launch'}
               </Title>
