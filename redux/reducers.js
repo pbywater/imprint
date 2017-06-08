@@ -32,21 +32,31 @@ function selectedBook(state = '', action) {
 }
 
 function selectedPhoto(state = [], action) {
-  console.log('--->', action);
   switch (action.type) {
-    case c.TIME_USER:
-    console.log(action);
+    case c.START_TIMER:
       return [
         ...state,
-      {photo: action.photo, startTime: action.startTime, endTime: }
-      ]
+        { photo: action.photo, startTime: action.startTime, endTime: '' }
+      ];
+    case c.END_TIMER:
+      return findPhoto(action.photo, action.time, state);
     default:
       return state;
   }
 }
 
+const findPhoto = (selectedPhoto, endTime, state) =>
+  state.map(photoObj => {
+    if (selectedPhoto === photoObj.photo) {
+      photoObj.endTime = endTime;
+      photoObj.dwellTime = (photoObj.endTime - photoObj.startTime) / 1000;
+      return photoObj;
+    }
+    return photoObj;
+  });
+
 export default combineReducers({
   books,
   selectedBook,
-  selectedPhoto,
+  selectedPhoto
 });
