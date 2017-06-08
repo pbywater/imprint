@@ -10,13 +10,17 @@ const updatedBooks = (state, action) =>
     return book;
   });
 
-function books(state = [], action) {
+function books(
+  state = [
+    { title: 'Editorial', id: 13544, photos: [] },
+    { title: 'Commercial', id: 67368, photos: [] }
+  ],
+  action
+) {
   switch (action.type) {
     case c.ADD_BOOK:
       return [...state, action.book];
     case c.ADD_PHOTO:
-      return updatedBooks(state, action);
-    case c.SELECT_BOOK:
       return updatedBooks(state, action);
     default:
       return state;
@@ -31,7 +35,63 @@ function selectedBook(state = '', action) {
   }
 }
 
+function appointments(
+  state = [
+    {
+      name: 'Burberry',
+      time: '14:30-17:30',
+      address: 'SW1P 2AW',
+      notes: 'bring heels',
+      portfolio: 'Editorial',
+      isEdit: false,
+      isNew: false
+    },
+    {
+      name: 'Topshop',
+      time: '14:30-17:30',
+      address: 'SW1P 2AW',
+      notes: 'more dummy data',
+      portfolio: 'Editorial',
+      isEdit: false,
+      isNew: false
+    }
+  ],
+  action
+) {
+  switch (action.type) {
+    case c.ADD_APPOINTMENT:
+      return [...state, action.appointment];
+    case c.EDIT_APPOINTMENT:
+      const editedAppointments = state.map((appointment, index) => {
+        if (index === action.id) {
+          return { ...appointment, [action.key]: action.text };
+        }
+        return appointment;
+      });
+      return editedAppointments;
+    case c.TOGGLE_EDIT:
+      const toggledStyle = state.map((appointment, index) => {
+        if (index === action.id) {
+          return { ...appointment, isEdit: !appointment.isEdit };
+        }
+        return appointment;
+      });
+      return toggledStyle;
+    case c.SAVE_APPOINTMENT:
+      const savedAppointments = state.map((appointment, index) => {
+        if (index === action.id) {
+          return { ...appointment, isEdit: false, isNew: false };
+        }
+        return appointment;
+      });
+      return savedAppointments;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   books,
-  selectedBook
+  selectedBook,
+  appointments
 });

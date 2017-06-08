@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Text, TextInput, View, TouchableOpacity } from "react-native";
-import styled, { css } from "styled-components/native";
+import React, { Component } from 'react';
+import { Text, TextInput, View, TouchableOpacity } from 'react-native';
+import styled, { css } from 'styled-components/native';
 
 const font = css`font-family: Helvetica;`;
 const centering = css`
@@ -30,10 +30,10 @@ export const Title = styled.Text`
 
 export const SelectOption = styled.View`
 width: 110;
-height:30;
+height:50;
 border: 1px solid white;
 ${centering}
-margin: 10%;
+overflow: hidden;
 `;
 
 export const AddBookIcon = styled.Image`

@@ -6,19 +6,26 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Image,
+  Image
 } from 'react-native';
 import styled from 'styled-components/native';
 import { TabNavigator } from 'react-navigation';
 import Upcoming from './Upcoming.js';
 import AddButtonSource from './../../assets/add-button.png';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {
+  addAppointment,
+  editAppointment,
+  toggleEdit,
+  saveAppointment
+} from '../../redux/actions.js';
 
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
-    flex: 1,
-  },
+    flex: 1
+  }
 });
 
 const AddAppointmentTouchable = styled.TouchableOpacity`
@@ -37,62 +44,23 @@ height: auto;
 const AppointmentsContainer = styled.ScrollView``;
 
 class Appointments extends Component {
-  state = {
-    appointments: [
-      {
-        name: 'Burberry',
-        time: '14:30-17:30',
-        address: 'SW1P 2AW',
-        notes: 'bring heels',
-        portfolio: 'Editorial',
-        isEdit: false,
-      },
-      {
-        name: 'Topshop',
-        time: '14:30-17:30',
-        address: 'SW1P 2AW',
-        notes: 'more dummy data',
-        portfolio: 'Editorial',
-        isEdit: false,
-      },
-    ],
-  };
-
   handleNewAppointment = () => {
-    this.setState({
-      appointments: [
-        ...this.state.appointments,
-        {
-          name: '',
-          time: '',
-          address: '',
-          notes: '',
-          portfolio: '',
-          isEdit: true,
-          isNew: true,
-        },
-      ],
+    this.props.addAppointment({
+      name: '',
+      time: '',
+      address: '',
+      notes: '',
+      portfolio: '',
+      isEdit: true,
+      isNew: true
     });
   };
 
   saveAppointment = id => {
-    const { appointments } = this.state;
-
-    if (appointments[id].name === '') {
+    if (this.props.state.appointments[id].name === '') {
       return;
     }
-
-    const updatedAppointments = appointments.map((appointment, index) => {
-      console.log(index, id);
-      if (index === id) {
-        return { ...appointment, isEdit: false, isNew: false };
-      }
-      return appointment;
-    });
-
-    this.setState({
-      appointments: updatedAppointments,
-    });
+    this.props.saveAppointment(id);
   };
 
   launchBook = () => {
@@ -101,35 +69,17 @@ class Appointments extends Component {
   };
 
   saveText = (text, key, id) => {
-    const updatedAppointments = this.state.appointments.map(
-      (appointment, index) => {
-        if (index === id) {
-          return { ...appointment, [key]: text };
-        }
-        return appointment;
-      }
-    );
-    this.setState({
-      appointments: updatedAppointments,
-    });
+    this.props.editAppointment(text, key, id);
   };
 
   toggleEdit = id => {
-    const updatedAppointments = this.state.appointments.map(
-      (appointment, index) => {
-        if (index === id) {
-          return { ...appointment, isEdit: !appointment.isEdit };
-        }
-        return appointment;
-      }
-    );
-    this.setState({
-      appointments: updatedAppointments,
-    });
+    this.props.toggleEdit(id);
   };
 
   render() {
-    const upcomingList = this.state.appointments.map((appointment, index) =>
+    const { books, appointments } = this.props.state;
+    const { navigate } = this.props.navigation;
+    const upcomingList = appointments.map((appointment, index) =>
       <Upcoming
         {...appointment}
         handleTextChange={this.saveText}
@@ -138,6 +88,8 @@ class Appointments extends Component {
         handleFocus={this.toggleEdit}
         key={index}
         id={index}
+        books={books}
+        navigate={navigate}
       />
     );
     return (
@@ -150,7 +102,16 @@ class Appointments extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
-  return {state}
+  return { state };
 }
-export default connect(mapStateToProps)(Appointments);
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    { addAppointment, editAppointment, toggleEdit, saveAppointment },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Appointments);
