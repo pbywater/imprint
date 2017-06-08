@@ -6,7 +6,7 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Image
+  Image,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { TabNavigator } from 'react-navigation';
@@ -20,14 +20,14 @@ import {
   toggleEdit,
   saveAppointment,
   changeBook,
-  editMode
+  editMode,
 } from '../../redux/actions.js';
 
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 const AddAppointmentTouchable = styled.TouchableOpacity`
@@ -54,7 +54,7 @@ class Appointments extends Component {
       notes: '',
       portfolio: '',
       isEdit: true,
-      isNew: true
+      isNew: true,
     });
   };
 
@@ -65,9 +65,10 @@ class Appointments extends Component {
     this.props.saveAppointment(id);
   };
 
-  launchBook = () => {
-    console.log('launching book');
-    this.props.navigation.navigate('Book');
+  launchBook = portfolio => {
+    if (this.props.state.books.some(book => book.title === portfolio)) {
+      this.props.navigation.navigate('Book', { title: portfolio });
+    }
   };
 
   saveText = (text, key, id) => {
@@ -87,6 +88,10 @@ class Appointments extends Component {
     this.props.editMode(id);
   };
 
+  saveDefaultBook = (portfolio, id) => {
+    this.props.changeBook(portfolio, id);
+  };
+
   render() {
     const { books, appointments } = this.props.state;
     const { navigate } = this.props.navigation;
@@ -98,6 +103,7 @@ class Appointments extends Component {
         handleLaunch={this.launchBook}
         handleFocus={this.toggleEdit}
         handleBookChange={this.changeBook}
+        addDefaultBook={this.saveDefaultBook}
         key={index}
         id={index}
         books={books}
@@ -127,7 +133,7 @@ function mapDispatchToProps(dispatch) {
       toggleEdit,
       saveAppointment,
       changeBook,
-      editMode
+      editMode,
     },
     dispatch
   );

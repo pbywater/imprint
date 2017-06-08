@@ -12,8 +12,8 @@ const updatedBooks = (state, action) =>
 
 function books(
   state = [
-    { title: 'Editorial', id: 13544, photos: [] },
-    { title: 'Commercial', id: 67368, photos: [] }
+    // { title: 'Editorial', id: 13544, photos: [] },
+    // { title: 'Commercial', id: 67368, photos: [] }
   ],
   action
 ) {
@@ -42,19 +42,21 @@ function appointments(
       time: '14:30-17:30',
       address: 'SW1P 2AW',
       notes: 'bring heels',
-      portfolio: 'Editorial',
+      portfolio: '',
+      // portfolio: 'Editorial',
       isEdit: false,
-      isNew: false
+      isNew: false,
     },
     {
       name: 'Topshop',
       time: '14:30-17:30',
       address: 'SW1P 2AW',
       notes: 'more dummy data',
-      portfolio: 'Commercial',
+      portfolio: '',
+      // portfolio: 'Commercial',
       isEdit: false,
-      isNew: false
-    }
+      isNew: false,
+    },
   ],
   action
 ) {
@@ -109,5 +111,5 @@ function appointments(
 export default combineReducers({
   books,
   selectedBook,
-  appointments
+  appointments,
 });
