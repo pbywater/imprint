@@ -6,7 +6,7 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Image,
+  Image
 } from 'react-native';
 import styled from 'styled-components/native';
 import { TabNavigator } from 'react-navigation';
@@ -20,13 +20,14 @@ import {
   toggleEdit,
   saveAppointment,
   changeBook,
+  editMode
 } from '../../redux/actions.js';
 
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
-    flex: 1,
-  },
+    flex: 1
+  }
 });
 
 const AddAppointmentTouchable = styled.TouchableOpacity`
@@ -53,7 +54,7 @@ class Appointments extends Component {
       notes: '',
       portfolio: '',
       isEdit: true,
-      isNew: true,
+      isNew: true
     });
   };
 
@@ -77,9 +78,13 @@ class Appointments extends Component {
     this.props.toggleEdit(id);
   };
 
+  editmode = id => {
+    this.props.editMode(id);
+  };
+
   changeBook = (portfolio, id) => {
     this.props.changeBook(portfolio, id);
-    this.props.toggleEdit(id);
+    this.props.editMode(id);
   };
 
   render() {
@@ -122,6 +127,7 @@ function mapDispatchToProps(dispatch) {
       toggleEdit,
       saveAppointment,
       changeBook,
+      editMode
     },
     dispatch
   );

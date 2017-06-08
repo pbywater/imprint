@@ -7,3 +7,4 @@ export const EDIT_APPOINTMENT = 'EDIT_APPOINTMENT';
 export const TOGGLE_EDIT = 'TOGGLE_EDIT';
 export const SAVE_APPOINTMENT = 'SAVE_APPOINTMENT';
 export const CHANGE_BOOK = 'CHANGE_BOOK';
+export const EDIT_MODE = 'EDIT_MODE';
