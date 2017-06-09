@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, ScrollView } from 'react-native';
+import { Text, View, Image, ScrollView, ListView } from 'react-native';
 import styled from 'styled-components/native';
 import Book from '../portfolio/Book';
 import { connect } from 'react-redux';
@@ -18,23 +18,47 @@ const StatsContainer = styled.View`
 const RowContainer = styled.View`
   display: flex;
   flex-direction: row;
-  width: 80%;
+  justify-content:center;
+  width: 100%;
   margin-bottom: 5%;
 `;
 
-const PhotoStats = styled.Text`
+const PhotoStats = styled.View`
   flex: 1;
-  margin-left: 50;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `;
 
 const BookTitle = styled.Text`
-  font-size: 20;
+  font-size: 30;
+  text-align: center;
+  font-family: Helvetica;
+  margin-bottom: 1%;
+`;
+
+const StatData = styled.Text`
+  font-size: 25;
+  font-weight: 800;
+  text-align: center;
+`;
+
+const StatList = styled.View`
+  width: 100%;
+  height: 10%;
 `;
 
 class Stats extends Component {
   render() {
+    const renderStats = array => {
+      return array.map((data, index) =>
+        <StatList key={index}>
+          <StatData>{('' + data / 1000).slice(0, -2) + 's'}</StatData>
+        </StatList>
+      );
+    };
     const books = this.props.state.bookData.books;
-    console.log('books in stats is ', books);
     const bookStats = books.map(book =>
       <StatsContainer>
         <BookTitle>{book.title}</BookTitle>
@@ -42,10 +66,12 @@ class Stats extends Component {
           ? book.photos.map(photo =>
               <RowContainer>
                 <StatsImage source={{ uri: photo.uri }} />
-                <PhotoStats>placeholder</PhotoStats>
+                <PhotoStats>
+                  {renderStats(photo.dwellTimes)}
+                </PhotoStats>
               </RowContainer>
             )
-          : <Text>
+          : <Text style={{ textAlign: 'center', fontSize: '12' }}>
               Add some photos to your portfolios in the Portfolio tab
             </Text>}
       </StatsContainer>
