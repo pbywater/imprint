@@ -8,6 +8,7 @@ const StatsImage = styled.Image`
   flex: 2;
   height: 300;
   margin-bottom: 5%;
+  margin-left: 5%;
 `;
 
 const StatsContainer = styled.View`
@@ -18,7 +19,6 @@ const StatsContainer = styled.View`
 const RowContainer = styled.View`
   display: flex;
   flex-direction: row;
-  justify-content:center;
   width: 100%;
   margin-bottom: 5%;
 `;
@@ -26,22 +26,20 @@ const RowContainer = styled.View`
 const PhotoStats = styled.View`
   flex: 1;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
 `;
 
 const BookTitle = styled.Text`
   font-size: 30;
-  text-align: center;
   font-family: Helvetica;
-  margin-bottom: 1%;
+  margin-bottom: 3%;
+  margin-left: 5%;
 `;
 
 const StatData = styled.Text`
   font-size: 25;
   font-weight: 800;
-  text-align: center;
+  margin-left: 5%;
 `;
 
 const StatList = styled.View`
@@ -71,7 +69,7 @@ class Stats extends Component {
                 </PhotoStats>
               </RowContainer>
             )
-          : <Text style={{ textAlign: 'center', fontSize: '12' }}>
+          : <Text style={{ textAlign: 'center', fontSize: '24' }}>
               Add some photos to your portfolios in the Portfolio tab
             </Text>}
       </StatsContainer>
