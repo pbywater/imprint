@@ -6,7 +6,12 @@ import PhotoGallery from './PhotoGallery';
 
 const Portfolio = StackNavigator({
   Portfolio: { screen: PortfolioList },
-  Book: { screen: Book },
+  Book: {
+    screen: Book,
+    navigationOptions: {
+      headerTintColor: '#38384E'
+    }
+  },
   Gallery: { screen: PhotoGallery, navigationOptions: { tabBarVisible: false } }
 });
 

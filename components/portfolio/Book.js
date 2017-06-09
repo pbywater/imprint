@@ -21,6 +21,7 @@ const { width, height } = Dimensions.get('window');
 
 const BookContainer = styled.ScrollView`
   flex: 1;
+  backgroundColor: white;
 `;
 
 const Photo = styled.Image`
@@ -41,7 +42,8 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    backgroundColor: 'white'
   }
 });
 
@@ -75,8 +77,7 @@ class Book extends Component {
           onPress={() => {
             this.props.selectBook(title);
             navigate('Gallery', { title });
-          }}
-        >
+          }}>
           <Photo source={{ uri: photo.uri }} />
         </TouchPhoto>
       );
