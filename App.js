@@ -29,7 +29,6 @@ const AppWithNavigationState = TabNavigator(
       },
       style: {
         backgroundColor: '#38384e',
-        marginBottom: 70,
         height: 60
       }
     }

@@ -43,7 +43,9 @@ width: 80%;
 height: auto;
 `;
 
-const AppointmentsContainer = styled.ScrollView``;
+const AppointmentsContainer = styled.ScrollView`
+margin-top: 70;
+`;
 
 class Appointments extends Component {
   handleNewAppointment = () => {
