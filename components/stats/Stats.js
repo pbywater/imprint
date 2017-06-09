@@ -8,27 +8,30 @@ const StatsImage = styled.Image`
   flex: 2;
   height: 300;
   margin-bottom: 5%;
+  margin-top: 5%;
 `;
 
 const StatsContainer = styled.View`
   width: 100%;
-  margin-bottom: 5%;
+  margin: 5%;
 `;
 
 const RowContainer = styled.View`
   display: flex;
   flex-direction: row;
   width: 80%;
-  margin-bottom: 5%;
 `;
 
 const PhotoStats = styled.Text`
   flex: 1;
   margin-left: 50;
+  margin-top: 5%;
 `;
 
 const BookTitle = styled.Text`
-  font-size: 20;
+  font-size: 30;
+  font-family: Helvetica;
+  color: #38384E;
 `;
 
 class Stats extends Component {
@@ -42,7 +45,7 @@ class Stats extends Component {
           ? book.photos.map(photo =>
               <RowContainer>
                 <StatsImage source={{ uri: photo.uri }} />
-                <PhotoStats>placeholder</PhotoStats>
+                <PhotoStats>DATA HERE</PhotoStats>
               </RowContainer>
             )
           : <Text>
