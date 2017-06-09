@@ -69,7 +69,7 @@ class Stats extends Component {
                 </PhotoStats>
               </RowContainer>
             )
-          : <Text style={{ textAlign: 'center', fontSize: '24' }}>
+          : <Text style={{ textAlign: 'center', fontSize: 24 }}>
               Add some photos to your portfolios in the Portfolio tab
             </Text>}
       </StatsContainer>
