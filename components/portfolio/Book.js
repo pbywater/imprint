@@ -8,7 +8,7 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  ImagePickerIOS,
+  ImagePickerIOS
 } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
+    flexWrap: 'wrap'
+  }
 });
 
 class Book extends Component {
   state = {
-    error: '',
+    error: ''
   };
 
   addPhoto = bookTitle => {
@@ -71,13 +71,13 @@ class Book extends Component {
     const renderPhotos = photos.map(photo => {
       return (
         <TouchPhoto
-          key={photo}
+          key={photo.uri}
           onPress={() => {
             this.props.selectBook(title);
             navigate('Gallery', { title });
           }}
         >
-          <Photo source={{ uri: photo }} />
+          <Photo source={{ uri: photo.uri }} />
         </TouchPhoto>
       );
     });
@@ -94,6 +94,6 @@ class Book extends Component {
 }
 
 function mapStateToProps(state) {
-  return { books: state.books };
+  return { books: state.bookData.books };
 }
 export default connect(mapStateToProps, { addPhoto, selectBook })(Book);

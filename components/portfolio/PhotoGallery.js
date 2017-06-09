@@ -16,10 +16,12 @@ class PhotoGallery extends Component {
   render() {
     const { books, selectedBook } = this.props;
     const { photos } = books.find(book => selectedBook === book.title);
+    const images = books.photos.map(photo => photo.uri);
+    console.log('images', images);
     return (
       <Gallery
         style={{ flex: 1, backgroundColor: 'white' }}
-        images={photos}
+        images={images}
         onPageSelected={index => this.startTimer(photos[index])}
       />
     );
@@ -27,9 +29,9 @@ class PhotoGallery extends Component {
 }
 
 function mapStateToProps(state) {
-  const { selectedBook, books } = state;
+  const { selectedBook, bookData } = state;
   return {
-    books,
+    books: bookData.books,
     selectedBook
   };
 }
