@@ -76,7 +76,7 @@ class Stats extends Component {
             </Text>}
       </StatsContainer>
     );
-    return <ScrollView>{bookStats}</ScrollView>;
+    return <ScrollView style={{ marginTop: 70 }}>{bookStats}</ScrollView>;
   }
 }
 
