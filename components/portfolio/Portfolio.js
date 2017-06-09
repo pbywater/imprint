@@ -4,15 +4,23 @@ import PortfolioList from './PortfolioList';
 import Book from './Book';
 import PhotoGallery from './PhotoGallery';
 
-const Portfolio = StackNavigator({
-  Portfolio: { screen: PortfolioList },
-  Book: {
-    screen: Book,
-    navigationOptions: {
-      headerTintColor: '#38384E'
-    }
+const Portfolio = StackNavigator(
+  {
+    Portfolio: { screen: PortfolioList },
+    Book: { screen: Book },
+    Gallery: {
+      screen: PhotoGallery,
+      navigationOptions: { tabBarVisible: false },
+    },
   },
-  Gallery: { screen: PhotoGallery, navigationOptions: { tabBarVisible: false } }
-});
+  {
+    navigationOptions: {
+      headerTintColor: '#38384E',
+      headerStyle: {
+        backgroundColor: 'white',
+      },
+    },
+  }
+);
 
 export default Portfolio;

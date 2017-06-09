@@ -60,11 +60,11 @@ class Stats extends Component {
     };
     const books = this.props.state.bookData.books;
     const bookStats = books.map(book =>
-      <StatsContainer>
+      <StatsContainer key={book.id}>
         <BookTitle>{book.title}</BookTitle>
         {book.photos.length > 0
           ? book.photos.map(photo =>
-              <RowContainer>
+              <RowContainer key={photo.uri}>
                 <StatsImage source={{ uri: photo.uri }} />
                 <PhotoStats>
                   {renderStats(photo.dwellTimes)}
