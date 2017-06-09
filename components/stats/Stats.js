@@ -57,12 +57,12 @@ class Stats extends Component {
       );
     };
     const books = this.props.state.bookData.books;
-    const bookStats = books.map(book =>
-      <StatsContainer key={book.id}>
+    const bookStats = books.map((book, idx) =>
+      <StatsContainer key={idx}>
         <BookTitle>{book.title}</BookTitle>
         {book.photos.length > 0
-          ? book.photos.map(photo =>
-              <RowContainer key={photo.uri}>
+          ? book.photos.map((photo, index) =>
+              <RowContainer key={index}>
                 <StatsImage source={{ uri: photo.uri }} />
                 <PhotoStats>
                   {renderStats(photo.dwellTimes)}
