@@ -34,6 +34,7 @@ const PortfolioList = styled.View`
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
+    background-color: white;
 `;
 
 const BookContainer = styled.View`
@@ -88,8 +89,7 @@ class Portfolio extends Component {
           onPress={() =>
             book.title.length < 3
               ? addNewBook()
-              : navigate('Book', { title: book.title })}
-        >
+              : navigate('Book', { title: book.title })}>
           <BookCover source={defaultFeaturedImage} />
         </BookTouchable>
         <BookTitle placeholder={book.title} />
