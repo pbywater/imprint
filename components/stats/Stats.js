@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import Book from '../portfolio/Book';
 import { connect } from 'react-redux';
@@ -50,7 +50,7 @@ class Stats extends Component {
             </Text>}
       </StatsContainer>
     );
-    return <View>{bookStats}</View>;
+    return <ScrollView>{bookStats}</ScrollView>;
   }
 }
 
