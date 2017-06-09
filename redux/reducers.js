@@ -6,7 +6,7 @@ const addPhotoToBook = (state, action) =>
     if (book.title === action.book) {
       const photo = {
         dwellTimes: [],
-        uri: action.photo
+        uri: action.photo,
       };
       book.photos = [...book.photos, photo];
       return book;
@@ -18,18 +18,18 @@ function bookData(
   state = {
     books: [
       { title: 'Editorial', id: 13544, photos: [] },
-      { title: 'Commercial', id: 67368, photos: [] }
+      { title: 'Commercial', id: 67368, photos: [] },
     ],
     analytics: {
       prevPhoto: {
         uri: '',
-        startTime: ''
+        startTime: '',
       },
       currentPhoto: {
         uri: '',
-        startTime: ''
-      }
-    }
+        startTime: '',
+      },
+    },
   },
   action
 ) {
@@ -37,20 +37,13 @@ function bookData(
     case c.ADD_BOOK:
       return {
         ...state,
-        books: [
-          ...state.books,
-          {
-            title: action.book,
-            id: action.book,
-            photos: []
-          }
-        ]
+        books: [...state.books, action.book],
       };
     case c.ADD_PHOTO:
       const books = addPhotoToBook(state, action);
       return {
         ...state,
-        books
+        books,
       };
     default:
       return state;
@@ -75,7 +68,7 @@ function appointments(
       portfolio: '',
       // portfolio: 'Editorial',
       isEdit: false,
-      isNew: false
+      isNew: false,
     },
     {
       name: 'Topshop',
@@ -85,8 +78,8 @@ function appointments(
       portfolio: '',
       // portfolio: 'Commercial',
       isEdit: false,
-      isNew: false
-    }
+      isNew: false,
+    },
   ],
   action
 ) {
@@ -141,5 +134,5 @@ function appointments(
 export default combineReducers({
   bookData,
   selectedBook,
-  appointments
+  appointments,
 });
