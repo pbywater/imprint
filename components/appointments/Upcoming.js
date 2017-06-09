@@ -5,7 +5,7 @@ import {
   GeneralButton,
   Title,
   SelectOption,
-  titleStyle,
+  titleStyle
 } from '../styles/BaseStyles.js';
 import Picker from 'react-native-wheel-picker';
 var PickerItem = Picker.Item;
@@ -64,7 +64,7 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: '',
+    text: ''
   };
 
   componentDidMount() {
@@ -78,7 +78,7 @@ class Upcoming extends Component {
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit,
+      edit: !this.state.edit
     });
   };
   render() {
@@ -97,8 +97,10 @@ class Upcoming extends Component {
       isNew,
       books,
       navigate,
-      handleBookChange,
+      handleBookChange
     } = this.props;
+
+    console.log('books', books);
 
     return (
       <UpcomingContainer>

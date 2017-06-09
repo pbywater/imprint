@@ -117,7 +117,7 @@ class Portfolio extends Component {
 function mapStateToProps(state) {
   return {
     photos: state.photos,
-    books: state.books
+    books: state.bookData.books
   };
 }
 
