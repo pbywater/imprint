@@ -8,22 +8,38 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './redux/reducers.js';
 import { Font } from 'expo';
+import styled, { css } from 'styled-components/native';
 
 const AppWithNavigationState = TabNavigator(
   {
     Appointments: { screen: Appointments },
     Portfolio: { screen: Portfolio },
-    Stats: { screen: Stats },
+    Stats: { screen: Stats }
   },
   {
     tabBarPosition: 'top',
+    tabBarOptions: {
+      activeBackgroundColor: 'white',
+      activeTintColor: '#38384E',
+      inactiveTintColor: 'white',
+      labelStyle: {
+        fontSize: 20,
+        fontFamily: 'Helvetica',
+        padding: 15
+      },
+      style: {
+        backgroundColor: '#38384e',
+        marginBottom: 70,
+        height: 60
+      }
+    }
   }
 );
 
 class App extends Component {
   componentDidMount() {
     Font.loadAsync({
-      Helvetica: require('./assets/Helvetica.ttf'),
+      Helvetica: require('./assets/Helvetica.ttf')
     });
   }
 
