@@ -4,21 +4,21 @@ export function addPhoto(book, photo) {
   return {
     type: c.ADD_PHOTO,
     book,
-    photo
+    photo,
   };
 }
 
 export function addBook(book) {
   return {
     type: c.ADD_BOOK,
-    book
+    book,
   };
 }
 
 export function selectBook(book) {
   return {
     type: c.SELECT_BOOK,
-    book
+    book,
   };
 }
 
@@ -26,14 +26,14 @@ export function timeUser(photo, startTime) {
   return {
     type: c.TIME_USER,
     photo,
-    startTime
+    startTime,
   };
 }
 
 export function addAppointment(appointment) {
   return {
     type: c.ADD_APPOINTMENT,
-    appointment
+    appointment,
   };
 }
 
@@ -42,28 +42,28 @@ export function editAppointment(text, key, id) {
     type: c.EDIT_APPOINTMENT,
     text,
     key,
-    id
+    id,
   };
 }
 
 export function toggleEdit(id) {
   return {
     type: c.TOGGLE_EDIT,
-    id
+    id,
   };
 }
 
 export function editMode(id) {
   return {
     type: c.EDIT_MODE,
-    id
+    id,
   };
 }
 
 export function saveAppointment(id) {
   return {
     type: c.SAVE_APPOINTMENT,
-    id
+    id,
   };
 }
 
@@ -71,6 +71,14 @@ export function changeBook(portfolio, id) {
   return {
     type: c.CHANGE_BOOK,
     portfolio,
-    id
+    id,
+  };
+}
+
+export function saveTime(time, photo) {
+  return {
+    type: c.START_TIMER,
+    photo,
+    time,
   };
 }

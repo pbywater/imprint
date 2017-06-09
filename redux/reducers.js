@@ -33,6 +33,7 @@ function bookData(
   },
   action
 ) {
+  console.log('SAVE TIME in reducer', action.type, action.photo, action.time);
   switch (action.type) {
     case c.ADD_BOOK:
       return {
@@ -45,6 +46,9 @@ function bookData(
         ...state,
         books,
       };
+    case c.SAVE_TIME:
+      console.log('SAVE TIME in case', action.type, action.photo, action.time);
+      return state;
     default:
       return state;
   }

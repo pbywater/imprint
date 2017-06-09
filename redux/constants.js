@@ -1,6 +1,6 @@
 export const ADD_PHOTO = 'ADD_PHOTO';
 export const ADD_BOOK = 'ADD_BOOK';
-export const TIME_USER = 'TIME_USER';
+export const SAVE_TIME = 'SAVE_TIME';
 export const SELECT_BOOK = 'SELECT_BOOK';
 export const ADD_APPOINTMENT = 'ADD_APPOINTMENT';
 export const EDIT_APPOINTMENT = 'EDIT_APPOINTMENT';
