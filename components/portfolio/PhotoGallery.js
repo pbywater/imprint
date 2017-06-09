@@ -9,21 +9,21 @@ import { saveTime } from './../../redux/actions';
 class PhotoGallery extends Component {
   //TODO use the library's on page selected method which returns the index of
   //the photo to find the photo then do some timing stuff??
-  startTimer = photo => {
+  startTimer = uri => {
     const currentTime = Date.now();
-    this.props.saveTime(currentTime, photo);
+    this.props.saveTime(currentTime, uri, this.props.selectedBook);
   };
 
   render() {
+    console.log('rending photo gallery');
     const { books, selectedBook } = this.props;
     const { photos } = books.find(book => selectedBook === book.title);
-    const images = books.photos.map(photo => photo.uri);
-    console.log('images', images);
+    const images = photos.map(photo => photo.uri);
     return (
       <Gallery
         style={{ flex: 1, backgroundColor: 'white' }}
         images={images}
-        onPageSelected={index => this.startTimer(photos[index])}
+        onPageSelected={index => this.startTimer(photos[index].uri)}
       />
     );
   }

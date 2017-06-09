@@ -5,7 +5,7 @@ import {
   GeneralButton,
   Title,
   SelectOption,
-  titleStyle
+  titleStyle,
 } from '../styles/BaseStyles.js';
 import Picker from 'react-native-wheel-picker';
 var PickerItem = Picker.Item;
@@ -30,9 +30,15 @@ const UpcomingBox = styled.View`
 `;
 
 const ThirdOfBox = styled.View`
+  flex: 1;
+  align-items: center;
   width: 33.33%;
   height: 100%;
   padding: 5%;
+`;
+
+const ThirdOfBoxMiddle = styled(ThirdOfBox)`
+  align-items: flex-start;
 `;
 
 const Subheading = styled(Title)`
@@ -64,7 +70,7 @@ const SubheadingTouchInput = styled(BodyTouchInput)`
 class Upcoming extends Component {
   state = {
     edit: false,
-    text: ''
+    text: '',
   };
 
   componentDidMount() {
@@ -78,7 +84,7 @@ class Upcoming extends Component {
 
   editDetails = evt => {
     this.setState({
-      edit: !this.state.edit
+      edit: !this.state.edit,
     });
   };
   render() {
@@ -97,10 +103,8 @@ class Upcoming extends Component {
       isNew,
       books,
       navigate,
-      handleBookChange
+      handleBookChange,
     } = this.props;
-
-    console.log('books', books);
 
     return (
       <UpcomingContainer>
@@ -128,7 +132,7 @@ class Upcoming extends Component {
               onEndEditing={() => !isNew && handleFocus(id)}
             />
           </ThirdOfBox>
-          <ThirdOfBox>
+          <ThirdOfBoxMiddle>
             <Subheading isEdit={isEdit}>Notes</Subheading>
             <BodyTouchInput
               isEdit={isEdit}
@@ -137,7 +141,7 @@ class Upcoming extends Component {
               onFocus={() => !isNew && handleFocus(id)}
               onEndEditing={() => !isNew && handleFocus(id)}
             />
-          </ThirdOfBox>
+          </ThirdOfBoxMiddle>
           <ThirdOfBox>
             <Subheading isEdit={isEdit}>Portfolio</Subheading>
             <SelectOption>

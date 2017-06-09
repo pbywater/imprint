@@ -22,14 +22,6 @@ export function selectBook(book) {
   };
 }
 
-export function timeUser(photo, startTime) {
-  return {
-    type: c.TIME_USER,
-    photo,
-    startTime,
-  };
-}
-
 export function addAppointment(appointment) {
   return {
     type: c.ADD_APPOINTMENT,
@@ -75,10 +67,11 @@ export function changeBook(portfolio, id) {
   };
 }
 
-export function saveTime(time, photo) {
+export function saveTime(currentTime, uri, title) {
   return {
-    type: c.START_TIMER,
-    photo,
-    time,
+    type: c.SAVE_TIME,
+    uri,
+    currentTime,
+    title,
   };
 }

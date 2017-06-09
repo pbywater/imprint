@@ -33,7 +33,6 @@ function bookData(
   },
   action
 ) {
-  console.log('SAVE TIME in reducer', action.type, action.photo, action.time);
   switch (action.type) {
     case c.ADD_BOOK:
       return {
@@ -47,8 +46,62 @@ function bookData(
         books,
       };
     case c.SAVE_TIME:
-      console.log('SAVE TIME in case', action.type, action.photo, action.time);
-      return state;
+      const { uri, currentTime, title } = action;
+      // console.log('SAVE TIME in case', uri, currentTime, title);
+      const { prevPhoto } = state.analytics;
+
+      // if prevPhoto has start time then calculate dwell time
+      if (typeof prevPhoto.startTime === 'number') {
+        const dwellTime = currentTime - prevPhoto.startTime;
+
+        const indexOfBookToUpdate = state.books.findIndex(
+          book => book.title === title
+        );
+        const updatedPhotos = state.books[
+          indexOfBookToUpdate
+        ].photos.map(photo => {
+          if (photo.uri === uri) {
+            return {
+              ...photo,
+              dwellTimes: [...photo.dwellTimes, dwellTime],
+            };
+          }
+          return photo;
+        });
+
+        // console.log('===== dwellTime', dwellTime);
+        // console.log('===== updatedPhotos', updatedPhotos);
+        const newState = {
+          ...state,
+          analytics: {
+            ...state.analytics,
+            prevPhoto: {
+              uri: uri,
+              startTime: currentTime,
+            },
+          },
+          books: [
+            ...state.books.slice(0, indexOfBookToUpdate),
+            { ...state.books[indexOfBookToUpdate], photos: updatedPhotos },
+            ...state.books.slice(indexOfBookToUpdate + 1),
+          ],
+        };
+
+        // console.log('===== newState', newState);
+        return newState;
+      }
+
+      return {
+        ...state,
+        analytics: {
+          ...state.analytics,
+          prevPhoto: {
+            uri: uri,
+            startTime: currentTime,
+          },
+        },
+      };
+
     default:
       return state;
   }
