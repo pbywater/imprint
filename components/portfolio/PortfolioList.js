@@ -34,11 +34,13 @@ const PortfolioList = styled.View`
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
+  backgroundColor: white;
 `;
 
 const BookContainer = styled.View`
   width: 30%;
   height: 30%;
+  backgroundColor: white;
 `;
 
 const BookTitle = styled.TextInput`
