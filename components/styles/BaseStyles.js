@@ -16,7 +16,7 @@ export const titleStyle = css`
 export const GeneralButton = styled.TouchableOpacity`
   width: 110;
   height: 50;
-  background-color: #F44243;
+  background-color: #ff6969;
   ${centering};
   margin:10%;
 `;
@@ -47,5 +47,5 @@ align-items: center;
 justify-content: center;
 width: 30%;
 height: 30%;
-background-color: #38384E;
+background-color: #7164ff;
 `;
