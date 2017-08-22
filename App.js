@@ -20,7 +20,7 @@ const AppWithNavigationState = TabNavigator(
     tabBarPosition: 'top',
     tabBarOptions: {
       activeBackgroundColor: 'white',
-      activeTintColor: '#38384E',
+      activeTintColor: '#444444',
       inactiveTintColor: 'white',
       labelStyle: {
         fontSize: 20,
@@ -28,9 +28,9 @@ const AppWithNavigationState = TabNavigator(
         padding: 15
       },
       style: {
-        backgroundColor: '#38384e',
+        backgroundColor: '#ababff',
         marginBottom: 70,
-        height: 60
+        height: 70
       }
     }
   }

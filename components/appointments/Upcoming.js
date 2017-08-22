@@ -11,7 +11,7 @@ import Picker from 'react-native-wheel-picker';
 var PickerItem = Picker.Item;
 
 const textColor = css`
-color: ${props => (props.isEdit ? '#38384E' : 'white')};
+color: ${props => (props.isEdit ? '#7164ff' : 'white')};
 `;
 
 const UpcomingContainer = styled.View`
@@ -23,8 +23,8 @@ const UpcomingContainer = styled.View`
 const UpcomingBox = styled.View`
   width: 90%;
   height: 100%;
-  background-color: ${props => (props.isEdit ? 'white' : '#38384E')};
-  border: ${props => (props.isEdit ? '5px solid #38384E' : 'white')};
+  background-color: ${props => (props.isEdit ? 'white' : '#7164ff')};
+  border: ${props => (props.isEdit ? '5px solid #7164ff' : 'white')};
   display: flex;
   flex-direction: row;
 `;
@@ -54,7 +54,7 @@ const TouchInput = styled.TextInput`
 height: 40;
 ${titleStyle};
 ${textColor};
-border: 1px solid #38384E;
+border: 1px solid #7164ff;
 `;
 
 const BodyTouchInput = styled(TouchInput)`
